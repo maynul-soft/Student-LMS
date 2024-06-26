@@ -26,13 +26,19 @@ class _LoginPageState extends State<LoginPage> {
     });
 
     try {
-      // Perform login request
+      print('Making API request to $apiUrl'); // Debug log
+
+      // Perform login request using http package
       final response = await http.get(
         Uri.parse(apiUrl),
       );
 
+      print('Response status: ${response.statusCode}'); // Debug log
+      final responseBody = response.body;
+      print('Response body: $responseBody'); // Debug log
+
       if (response.statusCode == 200) {
-        final Map<String, dynamic> loginData = jsonDecode(response.body);
+        final Map<String, dynamic> loginData = jsonDecode(responseBody);
 
         setState(() {
           _isLoading = false;
@@ -40,22 +46,27 @@ class _LoginPageState extends State<LoginPage> {
 
         // Handle successful login and user info retrieval here
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Login successful: ${loginData['student_name']}')),
+          SnackBar(
+              content: Text(
+                  'Login successful: ${loginData['data']['student_name']}')),
         );
 
         // Navigate to the DashboardPage after successful login
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const DashboardPage()),
+          MaterialPageRoute(
+              builder: (context) => DashboardPage(
+                    userData: loginData['data'],
+                  )),
         );
       } else {
         setState(() {
           _isLoading = false;
         });
 
-        final Map<String, dynamic> responseData = jsonDecode(response.body);
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Login failed: ${responseData['message']}')),
+          const SnackBar(
+              content: Text('Login failed: Email and password do not match')),
         );
       }
     } catch (e) {
@@ -63,12 +74,16 @@ class _LoginPageState extends State<LoginPage> {
         _isLoading = false;
       });
 
+      print('Login error: $e'); // Debug log
+
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Login failed: $e')),
+        const SnackBar(
+            content: Text('Login failed: Email and password do not match')),
       );
     }
   }
 
+  // Example credentials: 3000, 8801714012797
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                               content:
-                                  Text('Please add student ID and password')),
+                                  Text('Please enter student ID and password')),
                         );
                       } else {
                         _login(context);
