@@ -231,12 +231,11 @@ class SyllabusPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Syllabus'),
+        title: Text('Academic Plan 2024 - 2025'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: [
             ReusableTable(data: data, columns: columns),
           ],

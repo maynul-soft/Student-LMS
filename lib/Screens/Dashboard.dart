@@ -1,15 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:lms/Reuseable/CustomShapeClipper.dart';
+import 'package:lms/Reuseable/CustomShapeClipper.dart'; // Ensure this path is correct
 import 'package:lms/Screens/MainPage.dart';
 import 'package:lms/Screens/syllabus_page.dart';
 
-class DashboardPage extends StatelessWidget {
+class DashboardPage extends StatefulWidget {
   final Map<String, dynamic> userData;
 
   const DashboardPage({
     Key? key,
     required this.userData,
   }) : super(key: key);
+
+  @override
+  _DashboardPageState createState() => _DashboardPageState();
+}
+
+class _DashboardPageState extends State<DashboardPage> {
+  late Map<String, dynamic> userData;
+
+  @override
+  void initState() {
+    super.initState();
+    userData = widget.userData;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,17 +110,14 @@ class DashboardPage extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               children: [
                 // Full width card
-                Container(
-                  width: double.infinity,
-                  child: GestureDetector(
-                    onTap: () {
-                      _showUserDetails(context, userData);
-                    },
-                    child: _buildDashboardCardAvatar(
-                      userData['student_name'],
-                      userData['avatar'],
-                      userData,
-                    ),
+                GestureDetector(
+                  onTap: () {
+                    _showUserDetails(context, userData);
+                  },
+                  child: _buildDashboardCardAvatar(
+                    userData['student_name'],
+                    userData['avatar'],
+                    userData,
                   ),
                 ),
                 // GridView for other cards
@@ -118,8 +128,8 @@ class DashboardPage extends StatelessWidget {
                   crossAxisSpacing: 16,
                   mainAxisSpacing: 16,
                   children: [
-                    _buildDashboardCard(context, 'Syllabus', Icons.book_rounded,
-                        const SyllabusPage()),
+                    _buildDashboardCard(context, 'Academic Plan',
+                        Icons.book_rounded, const SyllabusPage()),
                     _buildDashboardCard(
                         context, 'Attendance', Icons.punch_clock_rounded, null),
                     _buildDashboardCard(
@@ -129,7 +139,7 @@ class DashboardPage extends StatelessWidget {
                     _buildDashboardCard(
                         context, 'Notice', Icons.notifications, null),
                     _buildDashboardCard(
-                        context, 'Library', Icons.library_books, null),
+                        context, 'Payment', Icons.attach_money_sharp, null),
                     _buildDashboardCard(context, 'Gallery', Icons.image, null),
                     _buildDashboardCard(
                         context, 'Time Table', Icons.table_chart, null),
@@ -137,7 +147,7 @@ class DashboardPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 const Text(
-                  'Teachers',
+                  'Teacher\'s Material',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -198,7 +208,7 @@ class DashboardPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    'School ID - ${userData['school_id']}',
+                    'Student ID - ${userData['id']}',
                     style: const TextStyle(
                       fontSize: 14,
                     ),
@@ -275,11 +285,16 @@ class DashboardPage extends StatelessWidget {
   }
 
   void _showUserDetails(BuildContext context, Map<String, dynamic> userData) {
+    TextEditingController nameController =
+        TextEditingController(text: userData['student_name']);
+    TextEditingController avatarController =
+        TextEditingController(text: userData['avatar']);
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Student Details'),
+          title: const Text('Student Details'),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
@@ -288,7 +303,15 @@ class DashboardPage extends StatelessWidget {
                   backgroundImage: NetworkImage(userData['avatar']),
                 ),
                 const SizedBox(height: 16),
-                Text('Name: ${userData['student_name']}'),
+                TextField(
+                  controller: nameController,
+                  decoration: const InputDecoration(labelText: 'Name'),
+                ),
+                TextField(
+                  controller: avatarController,
+                  decoration: const InputDecoration(labelText: 'Avatar URL'),
+                ),
+                const SizedBox(height: 16),
                 Text('Father Name: ${userData['father_name']}'),
                 Text('Father Mobile: ${userData['father_mobile']}'),
                 Text('Father Profession: ${userData['father_profession']}'),
@@ -296,12 +319,22 @@ class DashboardPage extends StatelessWidget {
                 Text('Mother Mobile: ${userData['mother_mobile']}'),
                 Text('Mother Profession: ${userData['mother_profession']}'),
                 Text('SMS Mobile: ${userData['sms_mobile']}'),
-                Text('School ID: ${userData['school_id']}'),
+                Text('Student ID: ${userData['id']}'),
                 Text('Email Address: ${userData['email_address'] ?? 'N/A'}'),
               ],
             ),
           ),
           actions: <Widget>[
+            TextButton(
+              child: const Text('Save'),
+              onPressed: () {
+                setState(() {
+                  userData['student_name'] = nameController.text;
+                  userData['avatar'] = avatarController.text;
+                });
+                Navigator.of(context).pop();
+              },
+            ),
             TextButton(
               child: const Text('Close'),
               onPressed: () {

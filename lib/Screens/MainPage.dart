@@ -16,7 +16,7 @@ class MainPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  'Legends Physics',
+                  'Legends Chemistry',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,

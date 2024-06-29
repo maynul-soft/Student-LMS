@@ -51,7 +51,7 @@ class _SplashScreenState extends State<SplashScreen>
             FadeTransition(
               opacity: _animation,
               child: const Text(
-                'Legends Physics',
+                'Legends Chemistry',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -70,7 +70,7 @@ class _SplashScreenState extends State<SplashScreen>
                   borderRadius: BorderRadius.circular(12.0), // Rounded corners
                 ),
                 child: const Text(
-                  'Conducted By Jahangir Sir',
+                  'Conducted By Parvez Sir',
                   style: TextStyle(
                     fontSize: 14,
                     color: Color(0xFF9BD770), // Text color

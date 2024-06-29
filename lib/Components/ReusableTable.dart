@@ -12,7 +12,7 @@ class ReusableTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int rowsPerPage = 10;
+    int rowsPerPage = 20;
     int totalRows = data.length;
     int pageCount = (totalRows / rowsPerPage).ceil();
 
