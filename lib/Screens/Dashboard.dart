@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lms/Screens/GalleryPage.dart';
 import 'package:lms/Screens/MainPage.dart';
 import 'package:lms/Screens/syllabus_page.dart';
 import 'package:lms/Widgets/CustomShapeClipper.dart'; // Ensure this path is correct
@@ -140,7 +141,8 @@ class _DashboardPageState extends State<DashboardPage> {
                         context, 'Notice', Icons.notifications, null),
                     _buildDashboardCard(
                         context, 'Payment', Icons.attach_money_sharp, null),
-                    _buildDashboardCard(context, 'Gallery', Icons.image, null),
+                    _buildDashboardCard(
+                        context, 'Gallery', Icons.image, const Gallery()),
                     _buildDashboardCard(
                         context, 'Time Table', Icons.timer, null),
                   ],
@@ -153,17 +155,19 @@ class _DashboardPageState extends State<DashboardPage> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 10),
-                SizedBox(
-                  height: 80, // Adjust the height as needed
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: List.generate(
-                      20,
-                      (index) =>
-                          _buildTeacherAvatar('assets/images/images.png'),
-                    ),
-                  ),
+
+                GridView.count(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 16,
+                  children: [
+                    _buildDashboardCard(
+                        context, 'Teacher Guide', Icons.book, null),
+                    _buildDashboardCard(
+                        context, 'Lesson Plan', Icons.schedule, null),
+                  ],
                 ),
               ],
             ),
@@ -274,16 +278,6 @@ class _DashboardPageState extends State<DashboardPage> {
     );
   }
 
-  Widget _buildTeacherAvatar(String imagePath) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: CircleAvatar(
-        radius: 30,
-        backgroundImage: AssetImage(imagePath),
-      ),
-    );
-  }
-
   void _showUserDetails(BuildContext context, Map<String, dynamic> userData) {
     TextEditingController nameController =
         TextEditingController(text: userData['student_name']);
@@ -299,7 +293,7 @@ class _DashboardPageState extends State<DashboardPage> {
             child: ListBody(
               children: <Widget>[
                 CircleAvatar(
-                  radius: 50,
+                  radius: 80,
                   backgroundImage: NetworkImage(userData['avatar']),
                 ),
                 const SizedBox(height: 16),
