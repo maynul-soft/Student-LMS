@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lms/Reuseable/CustomShapeClipper.dart'; // Ensure this path is correct
 import 'package:lms/Screens/MainPage.dart';
 import 'package:lms/Screens/syllabus_page.dart';
+import 'package:lms/Widgets/CustomShapeClipper.dart'; // Ensure this path is correct
 
 class DashboardPage extends StatefulWidget {
   final Map<String, dynamic> userData;
@@ -129,20 +129,20 @@ class _DashboardPageState extends State<DashboardPage> {
                   mainAxisSpacing: 16,
                   children: [
                     _buildDashboardCard(context, 'Academic Plan',
-                        Icons.book_rounded, const SyllabusPage()),
+                        Icons.menu_book_rounded, const SyllabusPage()),
                     _buildDashboardCard(
-                        context, 'Attendance', Icons.punch_clock_rounded, null),
+                        context, 'Attendance', Icons.group, null),
                     _buildDashboardCard(
                         context, 'Home Work', Icons.assignment, null),
                     _buildDashboardCard(
-                        context, 'Result', Icons.restore_outlined, null),
+                        context, 'Result', Icons.add_task, null),
                     _buildDashboardCard(
                         context, 'Notice', Icons.notifications, null),
                     _buildDashboardCard(
                         context, 'Payment', Icons.attach_money_sharp, null),
                     _buildDashboardCard(context, 'Gallery', Icons.image, null),
                     _buildDashboardCard(
-                        context, 'Time Table', Icons.table_chart, null),
+                        context, 'Time Table', Icons.timer, null),
                   ],
                 ),
                 const SizedBox(height: 16),
