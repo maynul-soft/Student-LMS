@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 
-
 class DataSearch extends SearchDelegate<String> {
   final List<Map<String, String>> data;
-  final Function(String) onQueryChanged;
 
-  DataSearch({required this.data, required this.onQueryChanged});
+  DataSearch({required this.data});
 
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
       IconButton(
-        icon: Icon(Icons.clear),
+        icon: const Icon(Icons.clear),
         onPressed: () {
           query = '';
-          onQueryChanged(query);
           showSuggestions(context);
         },
       ),
@@ -24,7 +21,7 @@ class DataSearch extends SearchDelegate<String> {
   @override
   Widget? buildLeading(BuildContext context) {
     return IconButton(
-      icon: Icon(Icons.arrow_back),
+      icon: const Icon(Icons.arrow_back),
       onPressed: () {
         close(context, '');
       },
@@ -33,8 +30,8 @@ class DataSearch extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
-    onQueryChanged(query);
-    return Container(); // No need to rebuild results here
+    // Nothing shown here, handled after close()
+    return Container();
   }
 
   @override
@@ -42,9 +39,9 @@ class DataSearch extends SearchDelegate<String> {
     final suggestions = query.isEmpty
         ? data
         : data.where((row) {
-      return row.values.any((element) =>
-
-          element.toLowerCase().contains(query.toLowerCase()));
+      return row.values.any(
+            (value) => value.toLowerCase().contains(query.toLowerCase()),
+      );
     }).toList();
 
     return ListView.builder(
@@ -54,8 +51,7 @@ class DataSearch extends SearchDelegate<String> {
         return ListTile(
           title: Text(suggestion['Course'] ?? ''),
           onTap: () {
-            query = suggestion['Course'] ?? '';
-            showResults(context);
+            close(context, suggestion['Course'] ?? '');
           },
         );
       },

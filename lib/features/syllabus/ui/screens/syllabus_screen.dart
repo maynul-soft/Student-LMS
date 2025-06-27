@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/build_search_section.dart';
+import '../widgets/data_search.dart';
 
 
 class SyllabusScreen extends StatefulWidget {
@@ -24,7 +24,7 @@ class _SyllabusScreenState extends State<SyllabusScreen> {
     // Generate 100 rows of data programmatically
     data = List.generate(100, (index) {
       return {
-        "Sl.": "${index + 1}",
+        "Sl": "$index",
         "Class": "O-level Candidate",
         "Course": "Topical Mock",
         "Exam": "Mock-${(index % 10) + 1}",
@@ -34,23 +34,6 @@ class _SyllabusScreenState extends State<SyllabusScreen> {
     filteredData = data;
   }
 
-  void _filterData(String query) {
-    if (query.isEmpty) {
-      setState(() {
-        filteredData = data;
-      });
-    } else {
-      setState(() {
-        filteredData = data.where((row) {
-          return row.values.any((element) =>
-              element.toLowerCase().contains(query.toLowerCase()));
-        }).toList();
-      });
-    }
-  }
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,17 +42,60 @@ class _SyllabusScreenState extends State<SyllabusScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.search),
-            onPressed: () {
-              showSearch(
+            onPressed: () async {
+              final selected = await showSearch(
                 context: context,
-                delegate: DataSearch(
-                  data: data,
-                  onQueryChanged: _filterData,
-                ),
+                delegate: DataSearch(data: data),
               );
+
+              if (selected != null && selected.isNotEmpty) {
+                setState(() {
+                  filteredData = data.where((row) {
+                    return row.values.any(
+                            (value) => value.toLowerCase().contains(selected.toLowerCase()));
+                  }).toList();
+                });
+              }
             },
           ),
         ],
+      ),
+      body: SingleChildScrollView(
+        child: Table(
+          border: TableBorder.all(),
+          columnWidths: const {
+            0: FlexColumnWidth(2),
+            1: FlexColumnWidth(3),
+            2: FlexColumnWidth(2),
+          },
+          children:  [
+           const TableRow(
+              children:  [
+                Padding(padding: EdgeInsets.all(3),child: Text('llak') , ),
+                Padding(padding: EdgeInsets.all(3),child: Text('llak') , ),
+                Padding(padding: EdgeInsets.all(3),child: Text('llak') , )
+              ],
+            ),
+            ...filteredData.map((student) => TableRow(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(student['Sl'].toString()),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(student['Class'].toString()),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(student['Course'].toString()),
+                ),
+              ],
+            )),
+        
+        
+          ],
+        ),
       ),
 
     );

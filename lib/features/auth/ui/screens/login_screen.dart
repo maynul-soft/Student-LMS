@@ -3,7 +3,7 @@ import 'package:lms/app/utils/app_colors.dart';
 import 'package:lms/features/auth/ui/widgets/login_form.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   static const String name = 'login-screen';
 
