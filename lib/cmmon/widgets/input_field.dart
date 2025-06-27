@@ -6,15 +6,17 @@ class ReusableInputField extends StatefulWidget {
   final TextEditingController controller;
   final IconData? icon;
   final bool showPasswordIcon;
+  final FormFieldValidator<String>? validator;
 
   const ReusableInputField({
-    Key? key,
+    super.key,
     required this.labelText,
     this.isPassword = false,
     required this.controller,
     this.icon,
     this.showPasswordIcon = true,
-  }) : super(key: key);
+    required this.validator
+  });
 
   @override
   _ReusableInputFieldState createState() => _ReusableInputFieldState();
@@ -25,8 +27,9 @@ class _ReusableInputFieldState extends State<ReusableInputField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       controller: widget.controller,
+      validator: widget.validator ,
       obscureText: widget.isPassword && !_showPassword,
       decoration: InputDecoration(
         labelText: widget.labelText,

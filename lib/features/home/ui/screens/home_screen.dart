@@ -3,27 +3,29 @@ import 'package:lms/features/gallery/ui/screens/gallery_screen.dart';
 import 'package:lms/features/auth/ui/screens/login_screen.dart';
 import 'package:lms/features/home/ui/widgets/CustomShapeClipper.dart';
 
-import '../../../syllabus/ui/screens/syllabus_page.dart'; // Ensure this path is correct
+import '../../../../app/utils/app_colors.dart';
+import '../../../syllabus/ui/screens/syllabus_screen.dart'; // Ensure this path is correct
 
 class HomeScreen extends StatefulWidget {
-  final Map<String, dynamic> userData;
+
 
   const HomeScreen({
     Key? key,
-    required this.userData,
   }) : super(key: key);
+
+
+  static const String name = 'home-screen';
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late Map<String, dynamic> userData;
+
 
   @override
   void initState() {
     super.initState();
-    userData = widget.userData;
   }
 
   @override
@@ -33,11 +35,11 @@ class _HomeScreenState extends State<HomeScreen> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            const DrawerHeader(
+            DrawerHeader(
               decoration: BoxDecoration(
-                color: Color(0xFF9BD770),
+                color: AppColors.themColor,
               ),
-              child: Text(
+              child: const Text(
                 'Menus',
                 style: TextStyle(
                   color: Colors.white,
@@ -114,13 +116,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 // Full width card
                 GestureDetector(
                   onTap: () {
-                    _showUserDetails(context, userData);
+                    // _showUserDetails(context, userData);
                   },
-                  child: _buildDashboardCardAvatar(
-                    userData['student_name'],
-                    userData['avatar'],
-                    userData,
-                  ),
+                  // child: _buildDashboardCardAvatar(
+                  //   // userData['student_name'],
+                  //   // userData['avatar'],
+                  //   // userData,
+                  // ),
                 ),
                 // GridView for other cards
                 GridView.count(
@@ -131,7 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisSpacing: 16,
                   children: [
                     _buildDashboardCard(context, 'Academic Plan',
-                        Icons.menu_book_rounded, const SyllabusPage()),
+                        Icons.menu_book_rounded, const SyllabusScreen()),
                     _buildDashboardCard(
                         context, 'Attendance', Icons.group, null),
                     _buildDashboardCard(

@@ -4,6 +4,8 @@ import 'package:lms/features/auth/ui/screens/login_screen.dart';
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
+  static const String name = 'splash-screen';
+
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }

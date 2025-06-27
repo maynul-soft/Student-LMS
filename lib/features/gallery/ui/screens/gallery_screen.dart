@@ -6,8 +6,12 @@ import 'package:http/http.dart' as http;
 class GalleryScreen extends StatefulWidget {
   const GalleryScreen({super.key});
 
+  static const String name = 'gallery-screen';
+
   @override
-  _GalleryScreenState createState() => _GalleryScreenState();
+  State<GalleryScreen> createState() => _GalleryScreenState();
+
+
 }
 
 class _GalleryScreenState extends State<GalleryScreen> {
@@ -47,7 +51,7 @@ class _GalleryScreenState extends State<GalleryScreen> {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   title,
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                 ),
               ),
             ],
@@ -61,12 +65,12 @@ class _GalleryScreenState extends State<GalleryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Gallery'),
+        title: const Text('Gallery'),
       ),
       body: _isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 crossAxisSpacing: 4.0,
                 mainAxisSpacing: 4.0,
@@ -88,8 +92,5 @@ class _GalleryScreenState extends State<GalleryScreen> {
   }
 }
 
-void main() {
-  runApp(MaterialApp(
-    home: GalleryScreen(),
-  ));
-}
+
+
