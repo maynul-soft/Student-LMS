@@ -63,7 +63,7 @@ class _LoginFromState extends State<LoginFrom> {
               ElevatedButton(
                 onPressed: _onTapLogin,
                 child: const Row(
-                  spacing: 10,
+
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(Icons.login_outlined),
