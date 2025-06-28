@@ -19,7 +19,6 @@ class AppRoutes{
     }else if(setting.name ==  HomeScreen.name ){
       screenWidgets = const HomeScreen();
     }
-
     return MaterialPageRoute(builder: (context) => screenWidgets);
   }
 }

@@ -13,8 +13,8 @@ import 'package:lms/features/home/ui/screens/home_screen.dart';
       url: Urls.loginUrl(id: id, password: password));
   debugPrint('FromLogInScreen: ${response.body}');
 
-  if(response.statusCode == 200){
-  await AuthController.saveUserInformation(LoginModel.fromJson(response.body!));
+  if(response.body!["status"] == 'success'){
+  await AuthController.saveUserInformation(loginModel: LoginModel.fromJson(response.body!),id: id,pass: password);
   }
   
   Navigator.pushNamedAndRemoveUntil(navigatorKey.currentContext!, HomeScreen.name, (predicate)=>false);

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lms/app/utils/app_colors.dart';
+import 'package:lms/cmmon/controller/auth_controller.dart';
 import 'package:lms/features/auth/ui/screens/login_screen.dart';
+import 'package:lms/features/home/ui/screens/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -35,17 +38,22 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   _navigateToHome() async {
-    await Future.delayed(Duration(seconds: 5), () {});
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => const LoginScreen()),
-    );
+    await AuthController.getUserInformation();
+    bool isUserLoggedIn = await AuthController.checkIsUseLoggedIn();
+
+    await Future.delayed(const Duration(seconds: 3), () {});
+
+    isUserLoggedIn
+        ? Navigator.pushNamedAndRemoveUntil(
+            context, HomeScreen.name, (predicate) => false)
+        : Navigator.pushNamedAndRemoveUntil(
+            context, LoginScreen.name, (predicate) => false);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF9BD770),
+      backgroundColor: AppColors.themColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
