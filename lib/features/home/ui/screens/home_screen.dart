@@ -5,7 +5,7 @@ import 'package:lms/features/attandence/ui/screens/attendace_screen.dart';
 import 'package:lms/features/auth/ui/screens/login_screen.dart';
 import 'package:lms/features/home/ui/widgets/CustomShapeClipper.dart';
 import 'package:lms/features/home/ui/widgets/dashboard_card.dart';
-import 'package:lms/features/syllabus/ui/screens/syllabus_screen.dart';
+import 'package:lms/features/upcoming_exam/ui/screens/upcoming_exam_screen.dart';
 
 import '../../../../app/utils/app_colors.dart';
 // Ensure this path is correct
@@ -126,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
             title: 'Academic Plan',
             icon: Icons.menu_book_rounded,
             onTap: () {
-              Navigator.pushNamed(context, SyllabusScreen.name);
+
             }),
         DashboardCard(
             title: 'Attendance',
@@ -134,7 +134,9 @@ class _HomeScreenState extends State<HomeScreen> {
             onTap: () {
               Navigator.pushNamed(context, AttendanceScreen.name);
             }),
-        DashboardCard(title: 'Home Work', icon: Icons.assignment, onTap: () {}),
+        DashboardCard(title: 'Upcoming Exam', icon: Icons.edit_note, onTap: () {
+          Navigator.pushNamed(context, UpcomingExamScreen.name);
+        }),
         DashboardCard(title: 'Result', icon: Icons.add_task, onTap: () {}),
         DashboardCard(title: 'Notice', icon: Icons.notifications, onTap: () {}),
         DashboardCard(

@@ -7,12 +7,14 @@ class NetworkResponse {
   final bool isSuccess;
   final int statusCode;
   final Map<String, dynamic>? body;
+  final List<dynamic>? listBody;
   final String? errorMessage;
 
   NetworkResponse({
     required this.isSuccess,
     required this.statusCode,
     this.body,
+    this.listBody,
     this.errorMessage = 'Something went wrong',
   });
 }
@@ -34,11 +36,22 @@ class NetworkClient {
       );
       if (response.statusCode == 200) {
         final decodedJson = jsonDecode(response.body);
-        return NetworkResponse(
-          isSuccess: true,
-          statusCode: response.statusCode,
-          body: decodedJson,
-        );
+        if(decodedJson.runtimeType == List<dynamic>){
+          return NetworkResponse(
+            isSuccess: true,
+            statusCode: response.statusCode,
+            listBody: decodedJson,
+          );
+
+        }else{
+          return NetworkResponse(
+            isSuccess: true,
+            statusCode: response.statusCode,
+            body: decodedJson,
+          );
+        }
+
+
       } else if (response.statusCode == 401) {
         return NetworkResponse(
           isSuccess: false,
@@ -148,10 +161,21 @@ class NetworkClient {
       if (response.statusCode == 200) {
         var decodedJson = jsonDecode(response.body);
         _logger.i(response.body);
-        return NetworkResponse(
+
+        if(decodedJson.runtimeType == List<dynamic>){
+          return NetworkResponse(
             isSuccess: true,
             statusCode: response.statusCode,
-            body: decodedJson);
+            listBody: decodedJson,
+          );
+
+        }else{
+          return NetworkResponse(
+            isSuccess: true,
+            statusCode: response.statusCode,
+            body: decodedJson,
+          );
+        }
       } else {
         var decodedJson = jsonDecode(response.body);
         _logger.i(response.body);
