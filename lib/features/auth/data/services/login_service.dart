@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
 import 'package:lms/app/app.dart';
 import 'package:lms/cmmon/controller/auth_controller.dart';
 import 'package:lms/cmmon/data/models/log_in_model.dart';

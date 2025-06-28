@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lms/features/attandence/ui/screens/attendace_screen.dart';
 import 'package:lms/features/auth/ui/screens/login_screen.dart';
 import 'package:lms/features/gallery/ui/screens/gallery_screen.dart';
 import 'package:lms/features/home/ui/screens/home_screen.dart';
@@ -18,6 +19,8 @@ class AppRoutes{
       screenWidgets = const SyllabusScreen();
     }else if(setting.name ==  HomeScreen.name ){
       screenWidgets = const HomeScreen();
+    }else if(setting.name ==  AttendanceScreen.name ){
+      screenWidgets = const AttendanceScreen();
     }
     return MaterialPageRoute(builder: (context) => screenWidgets);
   }
