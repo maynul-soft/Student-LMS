@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:lms/cmmon/controller/auth_controller.dart';
 import 'package:lms/cmmon/data/models/student_data_model.dart';
+import 'package:lms/features/attandence/ui/screens/attendace_screen.dart';
 import 'package:lms/features/auth/ui/screens/login_screen.dart';
 import 'package:lms/features/home/ui/widgets/CustomShapeClipper.dart';
 import 'package:lms/features/home/ui/widgets/dashboard_card.dart';
-import 'package:lms/features/syllabus/ui/screens/syllabus_screen.dart';
+import 'package:lms/features/upcoming_exam/ui/screens/upcoming_exam_screen.dart';
 
 import '../../../../app/utils/app_colors.dart';
 // Ensure this path is correct
@@ -49,10 +50,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     // Full width card
                     buildStudentProfileCard(
-                      onTap: (){_showUserDetails(context, AuthController.studentInfo!.data);},
-                      studentName:  AuthController.studentInfo!.data.studentName,
-                      studentPhoto:  AuthController.studentInfo!.data.avatar,
-                      id:   AuthController.studentInfo!.data.id.toString(),
+                      onTap: () {
+                        _showUserDetails(
+                            context, AuthController.studentInfo!.data);
+                      },
+                      studentName: AuthController.studentInfo!.data.studentName,
+                      studentPhoto: AuthController.studentInfo!.data.avatar,
+                      id: AuthController.studentInfo!.data.id.toString(),
                     ),
                     // GridView for other cards
                     buildDashboardSection(),
@@ -64,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                
+
                     buildTeacherMaterialSection(),
                   ],
                 ),
@@ -78,78 +82,69 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget buildTeacherMaterialSection() {
     return GridView.count(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 16,
-                    children: [
-                      DashboardCard(
-                          title: 'Teacher Guide', icon: Icons.book, onTap: () {}),
-                      DashboardCard(
-                          title: 'Lesson Plan',
-                          icon: Icons.schedule,
-                          onTap: () {})
-                    ],
-                  );
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      crossAxisCount: 2,
+      crossAxisSpacing: 16,
+      mainAxisSpacing: 16,
+      children: [
+        DashboardCard(title: 'Teacher Guide', icon: Icons.book, onTap: () {}),
+        DashboardCard(title: 'Lesson Plan', icon: Icons.schedule, onTap: () {})
+      ],
+    );
   }
 
   PreferredSizeWidget buildAppbar() {
     return AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          title: const Text(
-            'DASHBOARD',
-            style: TextStyle(color: Colors.white, fontSize: 20),
-          ),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.notifications),
-              onPressed: () {
-                // Add your notification logic here
-                debugPrint('Notification button pressed');
-              },
-            ),
-          ],
-        );
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      title: const Text(
+        'DASHBOARD',
+        style: TextStyle(color: Colors.white, fontSize: 20),
+      ),
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.notifications),
+          onPressed: () {
+            // Add your notification logic here
+            debugPrint('Notification button pressed');
+          },
+        ),
+      ],
+    );
   }
 
   Widget buildDashboardSection() {
     return GridView.count(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 16,
-                    children: [
-                      DashboardCard(
-                          title: 'Academic Plan',
-                          icon: Icons.menu_book_rounded,
-                          onTap: () {
-                            Navigator.pushNamed(context, SyllabusScreen.name);
-                          }),
-                      DashboardCard(
-                          title: 'Attendance', icon: Icons.group, onTap: () {}),
-                      DashboardCard(
-                          title: 'Home Work',
-                          icon: Icons.assignment,
-                          onTap: () {}),
-                      DashboardCard(
-                          title: 'Result', icon: Icons.add_task, onTap: () {}),
-                      DashboardCard(
-                          title: 'Notice',
-                          icon: Icons.notifications,
-                          onTap: () {}),
-                      DashboardCard(
-                          title: 'Payment',
-                          icon: Icons.attach_money_sharp,
-                          onTap: () {}),
-                      DashboardCard(
-                          title: 'Gallery', icon: Icons.image, onTap: () {}),
-                      DashboardCard(
-                          title: 'Time Table', icon: Icons.timer, onTap: () {}),
-                    ],
-                  );
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      crossAxisCount: 2,
+      crossAxisSpacing: 16,
+      mainAxisSpacing: 16,
+      children: [
+        DashboardCard(
+            title: 'Academic Plan',
+            icon: Icons.menu_book_rounded,
+            onTap: () {
+
+            }),
+        DashboardCard(
+            title: 'Attendance',
+            icon: Icons.group,
+            onTap: () {
+              Navigator.pushNamed(context, AttendanceScreen.name);
+            }),
+        DashboardCard(title: 'Upcoming Exam', icon: Icons.edit_note, onTap: () {
+          Navigator.pushNamed(context, UpcomingExamScreen.name);
+        }),
+        DashboardCard(title: 'Result', icon: Icons.add_task, onTap: () {}),
+        DashboardCard(title: 'Notice', icon: Icons.notifications, onTap: () {}),
+        DashboardCard(
+            title: 'Payment', icon: Icons.attach_money_sharp, onTap: () {}),
+        DashboardCard(title: 'Gallery', icon: Icons.image, onTap: () {}),
+        DashboardCard(title: 'Time Table', icon: Icons.timer, onTap: () {}),
+      ],
+    );
   }
 
   Widget buildDrawer(BuildContext context) {
@@ -187,11 +182,10 @@ class _HomeScreenState extends State<HomeScreen> {
           ListTile(
             leading: const Icon(Icons.logout),
             title: const Text('Logout'),
-            onTap: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const LoginScreen()),
-              );
+            onTap: () async {
+              await AuthController.logOut();
+              Navigator.pushNamedAndRemoveUntil(
+                  context, LoginScreen.name, (predicate) => false);
             },
           ),
         ],
@@ -200,7 +194,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget buildStudentProfileCard(
-      {required String studentName, required String studentPhoto, required String id, required VoidCallback onTap}) {
+      {required String studentName,
+      required String studentPhoto,
+      required String id,
+      required VoidCallback onTap}) {
     return GestureDetector(
       onTap: onTap,
       child: Card(
@@ -221,7 +218,8 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 CircleAvatar(
                   radius: 50,
-                  backgroundImage: NetworkImage(studentPhoto), // Use NetworkImage
+                  backgroundImage:
+                      NetworkImage(studentPhoto), // Use NetworkImage
                 ),
                 const SizedBox(height: 8),
                 Column(
@@ -252,7 +250,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _showUserDetails(BuildContext context, StudentDataModel userData) {
-
     showDialog(
       context: context,
       builder: (BuildContext context) {

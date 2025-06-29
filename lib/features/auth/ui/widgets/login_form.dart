@@ -14,7 +14,8 @@ class _LoginFromState extends State<LoginFrom> {
   final TextEditingController _passwordTEController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  // Example credentials: 3000, 8801714012797
+  bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,19 +41,19 @@ class _LoginFromState extends State<LoginFrom> {
                 controller: _idTEController,
                 icon: Icons.person,
                 validator: (String? value) {
-                  if(value!.isEmpty){
+                  if (value!.isEmpty) {
                     return 'Enter you user id';
                   }
-                  return null ;
+                  return null;
                 },
               ),
               const SizedBox(height: 16.0),
               ReusableInputField(
                 validator: (String? value) {
-                  if(value!.isEmpty){
+                  if (value!.isEmpty) {
                     return 'Enter you user id';
                   }
-                  return null ;
+                  return null;
                 },
                 labelText: 'Password',
                 isPassword: true,
@@ -62,16 +63,23 @@ class _LoginFromState extends State<LoginFrom> {
               const SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: _onTapLogin,
-                child: const Row(
-
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.login_outlined),
-                    Text(
-                      'Login',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
+                child: Visibility(
+                  visible: isLoading == false,
+                  replacement: const Center(child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: CircularProgressIndicator(),
+                  ),),
+                  child: const Row(
+                    spacing: 10,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.login_outlined),
+                      Text(
+                        'Login',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
                 ),
               )
             ],
@@ -80,9 +88,17 @@ class _LoginFromState extends State<LoginFrom> {
       ),
     );
   }
-  _onTapLogin(){
-    if(_formKey.currentState!.validate()){
-      loginService(id: _idTEController.text, password: _passwordTEController.text);
+
+  _onTapLogin() async {
+    isLoading = true;
+    setState(() {});
+
+    if (_formKey.currentState!.validate()) {
+    await  loginService(
+          id: _idTEController.text, password: _passwordTEController.text);
     }
+
+    isLoading = false;
+    setState(() {});
   }
 }

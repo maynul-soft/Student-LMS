@@ -37,25 +37,26 @@ class StudentDataModel {
 
   factory StudentDataModel.fromJson(Map<String, dynamic> json) {
     return StudentDataModel(
-      id: json['id'],
-      studentName: json['student_name'],
-      fatherName: json['father_name'],
-      fatherMobile: json['father_mobile'],
-      fatherProfession: json['father_profession'],
-      motherName: json['mother_name'],
-      motherMobile: json['mother_mobile'],
-      motherProfession: json['mother_profession'],
-      emailAddress: json['email_address'],
-      smsMobile: json['sms_mobile'],
-      schoolId: json['school_id'],
-      studentPhoto: json['student_photo'],
-      avatar: json['avatar'],
-      courses: (json['courses'] as List)
-          .map((e) => Course.fromJson(e))
+      id: json['id'] ?? 0,
+      studentName: json['student_name'] ?? '',
+      fatherName: json['father_name'] ?? '',
+      fatherMobile: json['father_mobile'] ?? '',
+      fatherProfession: json['father_profession'] ?? '',
+      motherName: json['mother_name'] ?? '',
+      motherMobile: json['mother_mobile'] ?? '',
+      motherProfession: json['mother_profession'] ?? '',
+      emailAddress: json['email_address'], // already nullable
+      smsMobile: json['sms_mobile'] ?? '',
+      schoolId: json['school_id'] ?? 0,
+      studentPhoto: json['student_photo'] ?? '',
+      avatar: json['avatar'] ?? '',
+      courses: (json['courses'] as List? ?? [])
+          .map((e) => Course.fromJson(e as Map<String, dynamic>))
           .toList(),
-      school: School.fromJson(json['school']),
+      school: School.fromJson(json['school'] ?? {}),
     );
   }
+
   Map<String, dynamic> toJson() => {
     'id': id,
     'student_name': studentName,
@@ -73,5 +74,4 @@ class StudentDataModel {
     'courses': courses.map((e) => e.toJson()).toList(),
     'school': school.toJson(),
   };
-
 }

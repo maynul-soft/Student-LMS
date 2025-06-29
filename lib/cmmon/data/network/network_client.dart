@@ -3,17 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:logger/logger.dart';
 
-
 class NetworkResponse {
   final bool isSuccess;
   final int statusCode;
   final Map<String, dynamic>? body;
+  final List<dynamic>? listBody;
   final String? errorMessage;
 
   NetworkResponse({
     required this.isSuccess,
     required this.statusCode,
     this.body,
+    this.listBody,
     this.errorMessage = 'Something went wrong',
   });
 }
@@ -35,13 +36,23 @@ class NetworkClient {
       );
       if (response.statusCode == 200) {
         final decodedJson = jsonDecode(response.body);
-        return NetworkResponse(
-          isSuccess: true,
-          statusCode: response.statusCode,
-          body: decodedJson,
-        );
-      } else if (response.statusCode == 401) {
+        if(decodedJson.runtimeType == List<dynamic>){
+          return NetworkResponse(
+            isSuccess: true,
+            statusCode: response.statusCode,
+            listBody: decodedJson,
+          );
 
+        }else{
+          return NetworkResponse(
+            isSuccess: true,
+            statusCode: response.statusCode,
+            body: decodedJson,
+          );
+        }
+
+
+      } else if (response.statusCode == 401) {
         return NetworkResponse(
           isSuccess: false,
           statusCode: response.statusCode,
@@ -54,7 +65,6 @@ class NetworkClient {
         );
       }
     } catch (e) {
-
       _postRequestLog(-1, url);
       return NetworkResponse(
         isSuccess: false,
@@ -72,7 +82,6 @@ class NetworkClient {
       Uri uri = Uri.parse(url);
       Map<String, String> headers = {
         'Content-type': 'Application/json',
-
       };
       _preRequestLog(url: url, body: body, headers: headers);
       Response response = await post(
@@ -121,6 +130,67 @@ class NetworkClient {
     }
   }
 
+  static Future<NetworkResponse> multiPartRequest(
+      {required String url,
+        required Map<String,String>fields,
+        List<MultipartFile>? file
+      }) async {
+    try {
+      Uri uri = Uri.parse(url);
+      MultipartRequest request = MultipartRequest('POST', uri);
+
+      request.fields.addAll(fields);
+
+
+     if(file != null){
+       request.files.addAll(file);
+     }
+
+      _preRequestLog(url: url, body: request.fields);
+
+      StreamedResponse streamedResponse = await request.send();
+
+      Response response = await Response.fromStream(streamedResponse);
+
+      _postRequestLog(
+        response.statusCode,
+        url,
+        body: response.body,
+      );
+
+      if (response.statusCode == 200) {
+        var decodedJson = jsonDecode(response.body);
+        _logger.i(response.body);
+
+        if(decodedJson.runtimeType == List<dynamic>){
+          return NetworkResponse(
+            isSuccess: true,
+            statusCode: response.statusCode,
+            listBody: decodedJson,
+          );
+
+        }else{
+          return NetworkResponse(
+            isSuccess: true,
+            statusCode: response.statusCode,
+            body: decodedJson,
+          );
+        }
+      } else {
+        var decodedJson = jsonDecode(response.body);
+        _logger.i(response.body);
+        return NetworkResponse(
+            isSuccess: false,
+            statusCode: response.statusCode,
+            body: decodedJson);
+      }
+    } catch (e) {
+      _logger.i(e.toString());
+      return NetworkResponse(
+          isSuccess: false, statusCode: -1, errorMessage: e.toString());
+    }
+  }
+
   static void _preRequestLog({
     required String url,
     Map<String, dynamic>? body,
@@ -128,35 +198,33 @@ class NetworkClient {
   }) {
     _logger.i(
       '++++++ THIS IS FROM PRE REQUEST LOG++++++++'
-          'Url => $url\n'
-          'Body: ${body ?? ''}\n'
-          'Headers ==>> $headers',
+      'Url => $url\n'
+      'Body: ${body ?? ''}\n'
+      'Headers ==>> $headers',
     );
   }
 
   static void _postRequestLog(
-      int statusCode,
-      String url, {
-        dynamic body,
-        Map<String, dynamic>? headers,
-        dynamic errorMessage,
-      }) {
+    int statusCode,
+    String url, {
+    dynamic body,
+    Map<String, dynamic>? headers,
+    dynamic errorMessage,
+  }) {
     if (errorMessage != null) {
       _logger.e(
         ''
-            'Url: $url\n'
-            'Status code: $statusCode\n'
-            'Error Message: $errorMessage',
+        'Url: $url\n'
+        'Status code: $statusCode\n'
+        'Error Message: $errorMessage',
       );
     } else {
       _logger.i(
         'Url: $url\n'
-            'Status code: $statusCode\n'
-            'Headers: $headers\n'
-            'Response: $body',
+        'Status code: $statusCode\n'
+        'Headers: $headers\n'
+        'Response: $body',
       );
     }
   }
-
-
 }

@@ -34,6 +34,8 @@ class AuthController extends GetxController {
     userId = id;
     password = pass;
 
+
+
     _logger.i("This Is Save Data: $studentInfo");
 
     Get.find<AuthController>().update();
@@ -81,9 +83,9 @@ class AuthController extends GetxController {
     password = null;
     studentInfo = null;
 
-    _logger.i('Token: ==> $userId & cleared');
-    _logger.i('Token: ==> $password & cleared');
-    _logger.i('Token: ==> $studentInfo & cleared');
+    _logger.i('User id: ==> $userId & cleared');
+    _logger.i('Password: ==> $password & cleared');
+    _logger.i('Student Info: ==> $studentInfo & cleared');
   }
 
 }

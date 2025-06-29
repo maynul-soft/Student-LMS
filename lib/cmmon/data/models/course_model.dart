@@ -21,27 +21,29 @@ class Course {
 
   factory Course.fromJson(Map<String, dynamic> json) {
     return Course(
-      id: json['id'],
-      studentTypeId: json['student_type_id'],
-      classId: json['class_id'],
-      batchId: json['batch_id'],
-      rollNo: json['roll_no'],
-      course: CourseInfo.fromJson(json['course']),
-      classInfo: ClassInfo.fromJson(json['class_info']),
-      batch: Batch.fromJson(json['batch']),
+      id: json['id'] ?? 0,
+      studentTypeId: json['student_type_id'] ?? 0,
+      classId: json['class_id'] ?? 0,
+      batchId: json['batch_id'] ?? 0,
+      rollNo: json['roll_no'] ?? 0,
+      course: CourseInfo.fromJson(json['course'] ?? {}),
+      classInfo: ClassInfo.fromJson(json['class_info'] ?? {}),
+      batch: Batch.fromJson(json['batch'] ?? {}),
     );
   }
+
   Map<String, dynamic> toJson() => {
     'id': id,
     'student_type_id': studentTypeId,
     'class_id': classId,
     'batch_id': batchId,
     'roll_no': rollNo,
-    'course':  course.toJson(),
+    'course': course.toJson(),
     'class_info': classInfo.toJson(),
     'batch': batch.toJson(),
   };
 }
+
 class CourseInfo {
   final int id;
   final String studentType;
@@ -53,8 +55,8 @@ class CourseInfo {
 
   factory CourseInfo.fromJson(Map<String, dynamic> json) {
     return CourseInfo(
-      id: json['id'],
-      studentType: json['student_type'],
+      id: json['id'] ?? 0,
+      studentType: json['student_type'] ?? '',
     );
   }
 
@@ -63,7 +65,6 @@ class CourseInfo {
     'student_type': studentType,
   };
 }
-
 
 class ClassInfo {
   final int id;
@@ -76,8 +77,8 @@ class ClassInfo {
 
   factory ClassInfo.fromJson(Map<String, dynamic> json) {
     return ClassInfo(
-      id: json['id'],
-      className: json['class_name'],
+      id: json['id'] ?? 0,
+      className: json['class_name'] ?? '',
     );
   }
 
@@ -86,7 +87,6 @@ class ClassInfo {
     'class_name': className,
   };
 }
-
 
 class Batch {
   final int id;
@@ -99,8 +99,8 @@ class Batch {
 
   factory Batch.fromJson(Map<String, dynamic> json) {
     return Batch(
-      id: json['id'],
-      batchName: json['batch_name'],
+      id: json['id'] ?? 0,
+      batchName: json['batch_name'] ?? '',
     );
   }
 
@@ -109,7 +109,6 @@ class Batch {
     'batch_name': batchName,
   };
 }
-
 
 class School {
   final int id;
@@ -122,8 +121,8 @@ class School {
 
   factory School.fromJson(Map<String, dynamic> json) {
     return School(
-      id: json['id'],
-      schoolName: json['school_name'],
+      id: json['id'] ?? 0,
+      schoolName: json['school_name'] ?? '',
     );
   }
 
