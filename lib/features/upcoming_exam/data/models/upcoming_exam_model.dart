@@ -1,11 +1,11 @@
-class ExamModel {
+class UpcomingExamModel {
   final String name;
   final String course;
   final String duration;
   final String date;
   final String syllabus;
 
-  ExamModel({
+  UpcomingExamModel({
     required this.name,
     required this.course,
     required this.duration,
@@ -13,8 +13,8 @@ class ExamModel {
     required this.syllabus,
   });
 
-  factory ExamModel.fromJson(Map<String, dynamic> json) {
-    return ExamModel(
+  factory UpcomingExamModel.fromJson(Map<String, dynamic> json) {
+    return UpcomingExamModel(
       name: json['name'] ?? '',
       course: json['course'] ?? '',
       duration: json['duration'] ?? '',

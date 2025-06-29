@@ -83,7 +83,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
           // Start Date Card
           buildPikcDateCard(
               ontap: () async {
-                await attendanceController.pickDate(isStartDate: false);
+                await attendanceController.pickDate(isStartDate: true);
               },
               color: Colors.blue.shade50,
               title: attendanceController.startDate.toString(),

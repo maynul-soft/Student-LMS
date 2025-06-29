@@ -3,8 +3,11 @@ import 'package:lms/cmmon/controller/auth_controller.dart';
 import 'package:lms/cmmon/data/models/student_data_model.dart';
 import 'package:lms/features/attandence/ui/screens/attendace_screen.dart';
 import 'package:lms/features/auth/ui/screens/login_screen.dart';
+import 'package:lms/features/comming_soon_screen.dart';
+import 'package:lms/features/exam_list/ui/screens/exam_list_screen.dart';
 import 'package:lms/features/home/ui/widgets/CustomShapeClipper.dart';
 import 'package:lms/features/home/ui/widgets/dashboard_card.dart';
+import 'package:lms/features/result/ui/screens/result_screen.dart';
 import 'package:lms/features/upcoming_exam/ui/screens/upcoming_exam_screen.dart';
 
 import '../../../../app/utils/app_colors.dart';
@@ -88,8 +91,8 @@ class _HomeScreenState extends State<HomeScreen> {
       crossAxisSpacing: 16,
       mainAxisSpacing: 16,
       children: [
-        DashboardCard(title: 'Teacher Guide', icon: Icons.book, onTap: () {}),
-        DashboardCard(title: 'Lesson Plan', icon: Icons.schedule, onTap: () {})
+        DashboardCard(title: 'Teacher Guide', icon: Icons.book, onTap: () {Navigator.pushNamed(context, ComingSoonScreen.name);}),
+        DashboardCard(title: 'Lesson Plan', icon: Icons.schedule, onTap: () {Navigator.pushNamed(context, ComingSoonScreen.name);})
       ],
     );
   }
@@ -108,6 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
           onPressed: () {
             // Add your notification logic here
             debugPrint('Notification button pressed');
+            Navigator.pushNamed(context, ComingSoonScreen.name);
           },
         ),
       ],
@@ -126,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
             title: 'Academic Plan',
             icon: Icons.menu_book_rounded,
             onTap: () {
-
+              Navigator.pushNamed(context, ComingSoonScreen.name);
             }),
         DashboardCard(
             title: 'Attendance',
@@ -134,15 +138,42 @@ class _HomeScreenState extends State<HomeScreen> {
             onTap: () {
               Navigator.pushNamed(context, AttendanceScreen.name);
             }),
-        DashboardCard(title: 'Upcoming Exam', icon: Icons.edit_note, onTap: () {
-          Navigator.pushNamed(context, UpcomingExamScreen.name);
-        }),
-        DashboardCard(title: 'Result', icon: Icons.add_task, onTap: () {}),
-        DashboardCard(title: 'Notice', icon: Icons.notifications, onTap: () {}),
         DashboardCard(
-            title: 'Payment', icon: Icons.attach_money_sharp, onTap: () {}),
-        DashboardCard(title: 'Gallery', icon: Icons.image, onTap: () {}),
-        DashboardCard(title: 'Time Table', icon: Icons.timer, onTap: () {}),
+            title: 'Upcoming Exam',
+            icon: Icons.edit_note,
+            onTap: () {
+              Navigator.pushNamed(context, UpcomingExamScreen.name);
+            }),
+        DashboardCard(
+            title: 'Exams',
+            icon: Icons.note_alt_outlined,
+            onTap: () {
+              Navigator.pushNamed(context, ExamListScreen.name);
+            }),
+        DashboardCard(
+            title: 'Result',
+            icon: Icons.add_chart,
+            onTap: () {
+              Navigator.pushNamed(context, ResultScreen.name);
+            }),
+        DashboardCard(
+            title: 'Payment',
+            icon: Icons.attach_money_sharp,
+            onTap: () {
+              Navigator.pushNamed(context, ComingSoonScreen.name);
+            }),
+        DashboardCard(
+            title: 'Gallery',
+            icon: Icons.image,
+            onTap: () {
+              Navigator.pushNamed(context, ComingSoonScreen.name);
+            }),
+        DashboardCard(
+            title: 'Time Table',
+            icon: Icons.timer,
+            onTap: () {
+              Navigator.pushNamed(context, ComingSoonScreen.name);
+            }),
       ],
     );
   }
@@ -167,17 +198,17 @@ class _HomeScreenState extends State<HomeScreen> {
           ListTile(
             leading: const Icon(Icons.home),
             title: const Text('Home'),
-            onTap: () {},
+            onTap: () {Navigator.pushNamed(context, ComingSoonScreen.name);},
           ),
           ListTile(
             leading: const Icon(Icons.account_circle),
             title: const Text('Profile'),
-            onTap: () {},
+            onTap: () {Navigator.pushNamed(context, ComingSoonScreen.name);},
           ),
           ListTile(
             leading: const Icon(Icons.settings),
             title: const Text('Settings'),
-            onTap: () {},
+            onTap: () {Navigator.pushNamed(context, ComingSoonScreen.name);},
           ),
           ListTile(
             leading: const Icon(Icons.logout),

@@ -162,7 +162,7 @@ class NetworkClient {
         var decodedJson = jsonDecode(response.body);
         _logger.i(response.body);
 
-        if(decodedJson.runtimeType == List<dynamic>){
+        if(decodedJson.runtimeType != Map<String, dynamic>){
           return NetworkResponse(
             isSuccess: true,
             statusCode: response.statusCode,
