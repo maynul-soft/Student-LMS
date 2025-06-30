@@ -63,16 +63,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     // GridView for other cards
                     buildDashboardSection(),
-                    const SizedBox(height: 16),
-                    const Text(
-                      'Teacher\'s Material',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
 
-                    buildTeacherMaterialSection(),
+                    const SizedBox(height: 16),
+                    // const Text(
+                    //   'Teacher\'s Material',
+                    //   style: TextStyle(
+                    //     fontSize: 18,
+                    //     fontWeight: FontWeight.bold,
+                    //   ),
+                    // ),
+
+                    // buildTeacherMaterialSection(),
                   ],
                 ),
               ),
@@ -162,18 +163,18 @@ class _HomeScreenState extends State<HomeScreen> {
             onTap: () {
               Navigator.pushNamed(context, ComingSoonScreen.name);
             }),
-        DashboardCard(
-            title: 'Gallery',
-            icon: Icons.image,
-            onTap: () {
-              Navigator.pushNamed(context, ComingSoonScreen.name);
-            }),
-        DashboardCard(
-            title: 'Time Table',
-            icon: Icons.timer,
-            onTap: () {
-              Navigator.pushNamed(context, ComingSoonScreen.name);
-            }),
+        // DashboardCard(
+        //     title: 'Gallery',
+        //     icon: Icons.image,
+        //     onTap: () {
+        //       Navigator.pushNamed(context, ComingSoonScreen.name);
+        //     }),
+        // DashboardCard(
+        //     title: 'Time Table',
+        //     icon: Icons.timer,
+        //     onTap: () {
+        //       Navigator.pushNamed(context, ComingSoonScreen.name);
+        //     }),
       ],
     );
   }

@@ -125,16 +125,17 @@ class _ResultScreenState extends State<ResultScreen> {
             scrollDirection: Axis.horizontal,
             // horizontal scroll enable korbe
             child: SizedBox(
-              width: 1000,
+              width: 700
+              ,
               child: Table(
                 columnWidths: const {
-                  0: FlexColumnWidth(0.2),
-                  1: FlexColumnWidth(0.8),
-                  2: FlexColumnWidth(1.3),
-                  3: FlexColumnWidth(0.7),
-                  4: FlexColumnWidth(0.7),
-                  5: FlexColumnWidth(0.7),
-                  6: FlexColumnWidth(0.3),
+                  0: FlexColumnWidth(1),
+                  1: FlexColumnWidth(2),
+                  2: FlexColumnWidth(2.2),
+                  3: FlexColumnWidth(1.5),
+                  4: FlexColumnWidth(1.5),
+                  5: FlexColumnWidth(1.5),
+                  6: FlexColumnWidth(1.5),
                 },
                 border: TableBorder.all(),
                 children: [
@@ -204,7 +205,7 @@ class _ResultScreenState extends State<ResultScreen> {
                         color:Colors.red,
                         child: Padding(
                           padding: EdgeInsets.all(10),
-                          child: Center(child: Text(value.grade,style: TextStyle(color:  Colors.white),)),
+                          child: SizedBox( height: 40 ,child: Center(child: Text(value.grade,style: TextStyle(color:  Colors.white),))),
                         ),
                       ),
                       // Padding(
