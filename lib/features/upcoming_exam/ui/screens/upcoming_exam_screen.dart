@@ -36,7 +36,7 @@ class _UpcomingExamScreenState extends State<UpcomingExamScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Upcoming Exam'),
+        title: const Text('LEGENDS CHEMISTRY'),
         backgroundColor: AppColors.themColor,
       ),
       body: Padding(
@@ -44,6 +44,15 @@ class _UpcomingExamScreenState extends State<UpcomingExamScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              const Text(
+                'Upcoming Exam',
+                style: TextStyle(
+                  fontSize: 25,
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
               SizedBox(width: 610, child: buildTableSection()),
             ],
           ),

@@ -1,13 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:lms/cmmon/controller/auth_controller.dart';
 import 'package:lms/cmmon/data/network/network_client.dart';
 import 'package:lms/cmmon/data/network/urls.dart';
-import 'package:lms/features/upcoming_exam/data/models/upcoming_exam_model.dart';
 import 'package:logger/logger.dart';
 import '../../data/models/resultModel.dart';
 
-class ResultContrller extends GetxController{
+class ResultController extends GetxController{
 
   List<ResultModel> examList = [];
   List<ResultModel> filteredList =[];

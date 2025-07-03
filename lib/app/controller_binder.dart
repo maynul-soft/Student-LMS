@@ -11,7 +11,7 @@ class ControllerBinder extends Bindings {
    Get.put(AttendanceController());
    Get.put(UpcomingExamController());
    Get.put(ExamController());
-   Get.put(ResultContrller());
+   Get.put(ResultController());
 
   }
 }

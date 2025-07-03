@@ -40,7 +40,7 @@ class LoginScreen extends StatelessWidget {
                     Radius.circular(12.0)), // Rounded corners
               ),
               child: const Text(
-                'Conducted By Jahangir Sir',
+                'Conducted By Parvez Sir',
                 style: TextStyle(
                   fontSize: 13,
                   color: Color(0xFF9BD770), // Text color

@@ -37,8 +37,8 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
       appBar: AppBar(
           backgroundColor: AppColors.themColor,
           title: const Text(
-            'Attendance Report',
-            style: TextStyle(fontSize: 25, color: Colors.white),
+            'LEGENDS CHEMISTRY',
+            style: TextStyle(fontSize: 25, color: Colors.black),
           )),
       body: SingleChildScrollView(
           child: Padding(

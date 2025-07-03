@@ -103,8 +103,8 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Colors.transparent,
       elevation: 0,
       title: const Text(
-        'DASHBOARD',
-        style: TextStyle(color: Colors.white, fontSize: 20),
+        'LEGENDS CHEMISTRY',
+        style: TextStyle(color: Colors.black, fontSize: 20),
       ),
       actions: [
         IconButton(

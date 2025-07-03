@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lms/app/utils/app_colors.dart';
-import 'package:lms/features/exam_list/ui/contrller/exam_controller.dart';
 import 'package:lms/features/result/ui/contrller/result_controller.dart';
-import 'package:lms/features/upcoming_exam/ui/contrller/upcoming_exam_controller.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({super.key});
@@ -15,7 +13,7 @@ class ResultScreen extends StatefulWidget {
 }
 
 class _ResultScreenState extends State<ResultScreen> {
-  final ResultContrller resultContrller = Get.find<ResultContrller>();
+  final ResultController resultContrller = Get.find<ResultController>();
 
   final TextEditingController searchBoxTEController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -41,18 +39,25 @@ class _ResultScreenState extends State<ResultScreen> {
     double width = MediaQuery.of(context).size.width - 30;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Result'),
+        title: const Text('LEGENDS CHEMISTRY'),
         backgroundColor: AppColors.themColor,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               buildSearchSecion(width),
+
               const SizedBox(
-                height: 20,
+                height: 5,
+              ),
+
+              const Text('Exam Results',style: TextStyle(fontSize: 25),),
+
+              const SizedBox(
+                height: 10,
               ),
               SizedBox(width: 610, child: buildTableSection()),
             ],
@@ -108,7 +113,7 @@ class _ResultScreenState extends State<ResultScreen> {
   }
 
   Widget buildTableSection() {
-    return GetBuilder<ResultContrller>(builder: (context) {
+    return GetBuilder<ResultController>(builder: (context) {
       return Visibility(
         visible: isLoading == false,
         replacement: const Padding(

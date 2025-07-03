@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lms/app/utils/app_colors.dart';
 import 'package:lms/features/exam_list/ui/contrller/exam_controller.dart';
-import 'package:lms/features/upcoming_exam/ui/contrller/upcoming_exam_controller.dart';
 
 class ExamListScreen extends StatefulWidget {
   const ExamListScreen({super.key});
@@ -40,16 +39,26 @@ class _ExamListScreenState extends State<ExamListScreen> {
     double width = MediaQuery.of(context).size.width - 30;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Exam List'),
+        title: const Text('LEGENDS CHEMISTRY'),
         backgroundColor: AppColors.themColor,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               buildSearchSecion(width),
+
+              const SizedBox(
+                height: 20,
+              ),
+
+              const Text('Exam List',
+              style: TextStyle(fontSize: 25),
+              ),
+
               const SizedBox(
                 height: 20,
               ),

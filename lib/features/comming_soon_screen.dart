@@ -1,4 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
+import 'package:logger/logger.dart';
 
 class ComingSoonScreen extends StatelessWidget {
   const ComingSoonScreen({super.key});
@@ -22,15 +27,19 @@ class ComingSoonScreen extends StatelessWidget {
           SizedBox(
             height: height / 6,
           ),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: CircleAvatar(
-                radius: 30,
-                backgroundColor: Colors.white,
-                child: Icon(Icons.arrow_back_outlined,size: 40,),
-              ))
+          Center(
+            child: ElevatedButton(
+                onPressed: () async {
+                  Navigator.pop(context);
+                },
+                child: CircleAvatar(
+                  radius: 30,
+                  backgroundColor: Colors.white,
+                  child: Icon(Icons.arrow_back_outlined,size: 40,),
+                )),
+          )
         ]));
   }
 }
+
+

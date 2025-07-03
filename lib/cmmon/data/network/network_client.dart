@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:logger/logger.dart';
 
@@ -36,21 +35,11 @@ class NetworkClient {
       );
       if (response.statusCode == 200) {
         final decodedJson = jsonDecode(response.body);
-        if(decodedJson.runtimeType == List<dynamic>){
-          return NetworkResponse(
-            isSuccess: true,
-            statusCode: response.statusCode,
-            listBody: decodedJson,
-          );
-
-        }else{
           return NetworkResponse(
             isSuccess: true,
             statusCode: response.statusCode,
             body: decodedJson,
           );
-        }
-
 
       } else if (response.statusCode == 401) {
         return NetworkResponse(
