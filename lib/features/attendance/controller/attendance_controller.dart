@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lms/app/app.dart';
-import 'package:lms/features/attandence/data/models/attandence_model.dart';
-import 'package:lms/features/attandence/data/models/attendace_report_model.dart';
 import 'package:logger/logger.dart';
-import '../../../cmmon/controller/auth_controller.dart';
-import '../../../cmmon/data/network/network_client.dart';
-import '../../../cmmon/data/network/urls.dart';
+
+import '../../../common/controller/auth_controller.dart';
+import '../../../common/data/network/network_client.dart';
+import '../../../common/data/network/urls.dart';
+import '../data/models/attandence_model.dart';
+import '../data/models/attendace_report_model.dart';
+
 
 class AttendanceController extends GetxController {
   static AttendanceController controller = Get.find<AttendanceController>();

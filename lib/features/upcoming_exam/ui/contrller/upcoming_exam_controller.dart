@@ -1,9 +1,10 @@
 import 'package:get/get.dart';
-import 'package:lms/cmmon/controller/auth_controller.dart';
-import 'package:lms/cmmon/data/network/network_client.dart';
-import 'package:lms/cmmon/data/network/urls.dart';
 import 'package:lms/features/upcoming_exam/data/models/upcoming_exam_model.dart';
 import 'package:logger/logger.dart';
+
+import '../../../../common/controller/auth_controller.dart';
+import '../../../../common/data/network/network_client.dart';
+import '../../../../common/data/network/urls.dart';
 
 class UpcomingExamController extends GetxController{
 

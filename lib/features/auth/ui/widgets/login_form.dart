@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lms/cmmon/widgets/input_field.dart';
 import 'package:lms/features/auth/data/services/login_service.dart';
+
+import '../../../../common/widgets/input_field.dart';
 
 class LoginFrom extends StatefulWidget {
   const LoginFrom({super.key});
@@ -63,12 +64,19 @@ class _LoginFromState extends State<LoginFrom> {
               const SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: _onTapLogin,
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10))),
                 child: Visibility(
                   visible: isLoading == false,
-                  replacement: const Center(child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: CircularProgressIndicator(),
-                  ),),
+                  replacement: const Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: CircularProgressIndicator(),
+                    ),
+                  ),
                   child: const Row(
                     spacing: 10,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -94,7 +102,7 @@ class _LoginFromState extends State<LoginFrom> {
     setState(() {});
 
     if (_formKey.currentState!.validate()) {
-    await  loginService(
+      await loginService(
           id: _idTEController.text, password: _passwordTEController.text);
     }
 

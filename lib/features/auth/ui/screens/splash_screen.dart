@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:lms/app/firebase_messaging/fcm.dart';
 import 'package:lms/app/utils/app_colors.dart';
-import 'package:lms/cmmon/controller/auth_controller.dart';
+import 'package:lms/app/utils/assets_path.dart';
 import 'package:lms/features/auth/ui/screens/login_screen.dart';
 import 'package:lms/features/home/ui/screens/home_screen.dart';
+
+import '../../../../common/controller/auth_controller.dart' show AuthController;
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -58,16 +61,10 @@ class _SplashScreenState extends State<SplashScreen>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            FadeTransition(
-              opacity: _animation,
-              child: const Text(
-                'Legends Chemistry',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
+            Image.asset(AssetsPaths.appLogoPng,
+            height: 300,
+              width: 300,
+              fit: BoxFit.cover,
             ),
             const SizedBox(height: 8),
             FadeTransition(

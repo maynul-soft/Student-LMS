@@ -1,9 +1,10 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
-import 'package:lms/cmmon/data/models/log_in_model.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../data/models/log_in_model.dart';
 
 class AuthController extends GetxController {
   static final AuthController controller = Get.find<AuthController>();
@@ -16,6 +17,7 @@ class AuthController extends GetxController {
   static const String _studentInfoKey = 'user-data';
   static const String _userIdKey = 'user-id';
   static const String _passwordKey = 'password';
+  static const String _subscribeNotificationKey = 'notification';
 
   static Future<void> saveUserInformation(
       {required LoginModel loginModel,
@@ -33,8 +35,6 @@ class AuthController extends GetxController {
     studentInfo = loginModel;
     userId = id;
     password = pass;
-
-
 
     _logger.i("This Is Save Data: $studentInfo");
 
@@ -87,5 +87,25 @@ class AuthController extends GetxController {
     _logger.i('Password: ==> $password & cleared');
     _logger.i('Student Info: ==> $studentInfo & cleared');
   }
+
+  static subscribeNotification(instance) async{
+    instance.subscribeToTopic('All-Notification');
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    await sharedPreferences.setBool(_subscribeNotificationKey, true);
+
+    Logger().e('save successfully');
+  }
+
+  static Future<bool> checkSubscribeNotification()async{
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
+    var status =  sharedPreferences.getBool(_subscribeNotificationKey) ?? false;
+
+    Logger().e('$status status');
+    return status ;
+  }
+
+
+
 
 }

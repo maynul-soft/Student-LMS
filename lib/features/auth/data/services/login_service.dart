@@ -4,12 +4,14 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/snackbar/snackbar.dart';
 import 'package:lms/app/app.dart';
 import 'package:lms/app/utils/app_colors.dart';
-import 'package:lms/cmmon/controller/auth_controller.dart';
-import 'package:lms/cmmon/data/models/log_in_model.dart';
-import 'package:lms/cmmon/data/network/network_client.dart';
-import 'package:lms/cmmon/data/network/urls.dart';
+
 import 'package:lms/features/home/ui/screens/home_screen.dart';
 import 'package:logger/logger.dart';
+
+import '../../../../common/controller/auth_controller.dart';
+import '../../../../common/data/models/log_in_model.dart';
+import '../../../../common/data/network/network_client.dart';
+import '../../../../common/data/network/urls.dart';
 
 
  Future<void> loginService(

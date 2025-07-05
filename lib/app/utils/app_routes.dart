@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:lms/features/attandence/ui/screens/attendace_screen.dart';
 import 'package:lms/features/auth/ui/screens/login_screen.dart';
 import 'package:lms/features/comming_soon_screen.dart';
 import 'package:lms/features/exam_list/ui/screens/exam_list_screen.dart';
 import 'package:lms/features/home/ui/screens/home_screen.dart';
+import 'package:lms/features/notification/ui/screens/notification_screen.dart';
 import 'package:lms/features/result/ui/screens/result_screen.dart';
 import 'package:lms/features/upcoming_exam/ui/screens/upcoming_exam_screen.dart';
+import '../../features/attendance/ui/screens/attendace_screen.dart';
 import '../../features/auth/ui/screens/splash_screen.dart';
 
 class AppRoutes{
@@ -27,6 +28,8 @@ class AppRoutes{
       screenWidgets = const ResultScreen();
     }else if(setting.name ==  ComingSoonScreen.name ){
       screenWidgets = const ComingSoonScreen();
+    }else if(setting.name ==  NotificationScreen.name ){
+      screenWidgets = const NotificationScreen();
     }
     return MaterialPageRoute(builder: (context) => screenWidgets);
   }

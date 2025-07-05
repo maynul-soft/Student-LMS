@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "293751551643",
+    "project_id": "slms-d32c0",
+    "storage_bucket": "slms-d32c0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:293751551643:android:d0ab549cb9de46538c783e",
+        "android_client_info": {
+          "package_name": "com.app.legends_chemistry"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFopJNP2mGX1Za63IY5-qnv6WLPxFCwgY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

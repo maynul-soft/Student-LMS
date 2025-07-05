@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:lms/cmmon/controller/auth_controller.dart';
-import 'package:lms/cmmon/data/models/student_data_model.dart';
-import 'package:lms/features/attandence/ui/screens/attendace_screen.dart';
+import 'package:lms/common/controller/auth_controller.dart';
+import 'package:lms/common/data/models/student_data_model.dart';
 import 'package:lms/features/auth/ui/screens/login_screen.dart';
 import 'package:lms/features/comming_soon_screen.dart';
 import 'package:lms/features/exam_list/ui/screens/exam_list_screen.dart';
 import 'package:lms/features/home/ui/widgets/CustomShapeClipper.dart';
 import 'package:lms/features/home/ui/widgets/dashboard_card.dart';
+import 'package:lms/features/notification/data/controller/notification_controller.dart';
+import 'package:lms/features/notification/ui/screens/notification_screen.dart';
 import 'package:lms/features/result/ui/screens/result_screen.dart';
 import 'package:lms/features/upcoming_exam/ui/screens/upcoming_exam_screen.dart';
+import 'package:get/get.dart';
 
 import '../../../../app/utils/app_colors.dart';
+import '../../../attendance/ui/screens/attendace_screen.dart';
 // Ensure this path is correct
 
 class HomeScreen extends StatefulWidget {
@@ -25,6 +28,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  final NotificationController notificationController = Get.find<NotificationController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,8 +98,18 @@ class _HomeScreenState extends State<HomeScreen> {
       crossAxisSpacing: 16,
       mainAxisSpacing: 16,
       children: [
-        DashboardCard(title: 'Teacher Guide', icon: Icons.book, onTap: () {Navigator.pushNamed(context, ComingSoonScreen.name);}),
-        DashboardCard(title: 'Lesson Plan', icon: Icons.schedule, onTap: () {Navigator.pushNamed(context, ComingSoonScreen.name);})
+        DashboardCard(
+            title: 'Teacher Guide',
+            icon: Icons.book,
+            onTap: () {
+              Navigator.pushNamed(context, ComingSoonScreen.name);
+            }),
+        DashboardCard(
+            title: 'Lesson Plan',
+            icon: Icons.schedule,
+            onTap: () {
+              Navigator.pushNamed(context, ComingSoonScreen.name);
+            })
       ],
     );
   }
@@ -108,11 +124,24 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       actions: [
         IconButton(
-          icon: const Icon(Icons.notifications),
+          icon: GetBuilder<NotificationController>(
+            builder: (controller) {
+              return Stack(
+                children: [
+                   controller.isActive? const Positioned(
+                      left: 15,
+                      top: 1,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.red,
+                        radius: 3,
+                      )): const SizedBox.shrink(),
+                  const Icon(Icons.notifications),
+                ],
+              );
+            }
+          ),
           onPressed: () {
-            // Add your notification logic here
-            debugPrint('Notification button pressed');
-            Navigator.pushNamed(context, ComingSoonScreen.name);
+            Navigator.pushNamed(context, NotificationScreen.name);
           },
         ),
       ],
@@ -199,17 +228,23 @@ class _HomeScreenState extends State<HomeScreen> {
           ListTile(
             leading: const Icon(Icons.home),
             title: const Text('Home'),
-            onTap: () {Navigator.pushNamed(context, ComingSoonScreen.name);},
+            onTap: () {
+              Navigator.pushNamed(context, ComingSoonScreen.name);
+            },
           ),
           ListTile(
             leading: const Icon(Icons.account_circle),
             title: const Text('Profile'),
-            onTap: () {Navigator.pushNamed(context, ComingSoonScreen.name);},
+            onTap: () {
+              Navigator.pushNamed(context, ComingSoonScreen.name);
+            },
           ),
           ListTile(
             leading: const Icon(Icons.settings),
             title: const Text('Settings'),
-            onTap: () {Navigator.pushNamed(context, ComingSoonScreen.name);},
+            onTap: () {
+              Navigator.pushNamed(context, ComingSoonScreen.name);
+            },
           ),
           ListTile(
             leading: const Icon(Icons.logout),

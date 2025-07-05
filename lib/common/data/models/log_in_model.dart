@@ -1,4 +1,4 @@
-import 'package:lms/cmmon/data/models/student_data_model.dart';
+import 'package:lms/common/data/models/student_data_model.dart';
 
 class LoginModel {
   final String status;

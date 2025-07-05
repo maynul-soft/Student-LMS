@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lms/app/utils/app_colors.dart';
 import 'package:get/get.dart';
-import 'package:lms/features/attandence/controller/attendance_controller.dart';
+
+import '../../controller/attendance_controller.dart';
 
 class AttendanceScreen extends StatefulWidget {
   const AttendanceScreen({super.key});
