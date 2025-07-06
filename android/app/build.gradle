@@ -7,18 +7,40 @@ plugins {
     id "dev.flutter.flutter-gradle-plugin"
 }
 
-def localProperties = new Properties()
-def localPropertiesFile = rootProject.file('local.properties')
-if (localPropertiesFile.exists()) {
-    localPropertiesFile.withReader('UTF-8') { reader ->
-        localProperties.load(reader)
-    }
+// Load production signing properties from key.properties
+// This file should be placed in your 'android' directory and NOT committed to version control.
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+} else {
+    // Print a warning if key.properties is not found, as it's crucial for release builds.
+    // For debug builds, this warning can be ignored if you're not signing them with a custom key.
+    println "WARNING: 'key.properties' file not found at ${keystorePropertiesFile.absolutePath}. " +
+            "Release builds may fail if signing credentials are not provided."
 }
 
-def flutterVersionCode = localProperties.getProperty('flutter.versionCode') ?: '1'
-def flutterVersionName = localProperties.getProperty('flutter.versionName') ?: '1.0'
-
 android {
+    signingConfigs {
+        release {
+            // Check if properties are loaded before attempting to use them
+            if (keystoreProperties.containsKey('storeFile') &&
+                    keystoreProperties.containsKey('storePassword') &&
+                    keystoreProperties.containsKey('keyAlias') &&
+                    keystoreProperties.containsKey('keyPassword')) {
+
+                storeFile file(keystoreProperties['storeFile'])
+                storePassword keystoreProperties['storePassword']
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+            } else {
+                // You might want to throw a GradleException here for a stricter build failure
+                // if release signing credentials are absolutely mandatory.
+                println "ERROR: Missing one or more required signing properties in 'key.properties' for release build."
+            }
+        }
+    }
+
     namespace "com.app.legends_chemistry"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
@@ -27,15 +49,23 @@ android {
         applicationId = "com.app.legends_chemistry"
         minSdk = 21
         targetSdk = 34
-        versionCode = flutterVersionCode.toInteger()
-        versionName = flutterVersionName
+        // Accessing version code and name directly from the flutter object (from pubspec.yaml)
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
     }
 
     buildTypes {
         release {
-            signingConfig = signingConfigs.debug
-            shrinkResources false
-            minifyEnabled false
+            // Apply the custom 'release' signing configuration
+            signingConfig signingConfigs.release
+
+//            signingConfig signingConfigs.debug
+            // Enable minification and resource shrinking for production builds
+            // This reduces APK size and obfuscates code. Remember to test thoroughly
+            // as it might require ProGuard rules for reflection or dynamic code.
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -61,8 +91,6 @@ flutter {
 dependencies {
     implementation 'com.google.firebase:firebase-messaging:23.4.1'
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5'
-
 }
+
 apply plugin: 'com.google.gms.google-services'
-
-

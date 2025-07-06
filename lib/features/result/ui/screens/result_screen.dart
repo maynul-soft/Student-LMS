@@ -144,36 +144,33 @@ class _ResultScreenState extends State<ResultScreen> {
                 },
                 border: TableBorder.all(),
                 children: [
-                   TableRow(children: [
-                    const Padding(
+                   const TableRow(children: [
+                    Padding(
                       padding: EdgeInsets.all(10),
                       child: Center(child: Text('Sl')),
                     ),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.all(10),
                       child: Center(child: Text('Exam name')),
                     ),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.all(10),
                       child: Center(child: Text('Paper mark')),
                     ),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.all(10),
                       child: Center(child: Text('Total mark')),
                     ),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.all(10),
                       child: Center(child: Text('Obtained mark')),
-                    ),const Padding(
+                    ),Padding(
                       padding: EdgeInsets.all(10),
                       child: Center(child: Text('Average')),
                     ),
-                    Container(
-                      color: Colors.red,
-                      child: const Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Center(child: Text('Grade',style: TextStyle(color: Colors.white),),),
-                      ),
+                    Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Center(child: Text('Grade',style: TextStyle(color: Colors.black),),),
                     ),
                     // Padding(
                     //   padding: EdgeInsets.all(10),
@@ -206,12 +203,9 @@ class _ResultScreenState extends State<ResultScreen> {
                       ),Padding(
                         padding: EdgeInsets.all(10),
                         child: Center(child: Text(value.average.toString())),
-                      ),Container(
-                        color:Colors.red,
-                        child: Padding(
-                          padding: EdgeInsets.all(10),
-                          child: SizedBox( height: 40 ,child: Center(child: Text(value.grade,style: TextStyle(color:  Colors.white),))),
-                        ),
+                      ),Padding(
+                        padding: EdgeInsets.all(10),
+                        child: SizedBox( height: 40 ,child: Center(child: Text(value.grade,style: const TextStyle(color:  Colors.black),))),
                       ),
                       // Padding(
                       //   padding: EdgeInsets.all(10),
