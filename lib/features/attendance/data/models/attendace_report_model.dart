@@ -10,10 +10,12 @@ class AttendanceReportModel {
   });
 
   factory AttendanceReportModel.fromJson(Map<String, dynamic> json) {
+    List x = (json['attendances']);
     return AttendanceReportModel(
       status: json['status'] ?? '',
-      attendances: (json['attendances'] as List<dynamic>)
-          .map((e) => AttendanceModel.fromJson(e as Map<String, dynamic>))
+
+      attendances: x
+          .map((e) => AttendanceModel.fromJson(e))
           .toList(),
     );
   }

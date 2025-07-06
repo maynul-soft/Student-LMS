@@ -150,8 +150,10 @@ class NetworkClient {
       if (response.statusCode == 200) {
         var decodedJson = jsonDecode(response.body);
         _logger.i(response.body);
+        _logger.e('before Parse ${decodedJson.runtimeType}');
 
-        if(decodedJson.runtimeType != Map<String, dynamic>){
+        if( decodedJson.runtimeType == List<dynamic> ){
+          _logger.e('for list<dynamic>: ${decodedJson.runtimeType}');
           return NetworkResponse(
             isSuccess: true,
             statusCode: response.statusCode,
@@ -159,6 +161,8 @@ class NetworkClient {
           );
 
         }else{
+          _logger.e('for Map<String dynamic> ${decodedJson.runtimeType}');
+
           return NetworkResponse(
             isSuccess: true,
             statusCode: response.statusCode,
@@ -171,7 +175,8 @@ class NetworkClient {
         return NetworkResponse(
             isSuccess: false,
             statusCode: response.statusCode,
-            body: decodedJson);
+            body: decodedJson
+        );
       }
     } catch (e) {
       _logger.i(e.toString());

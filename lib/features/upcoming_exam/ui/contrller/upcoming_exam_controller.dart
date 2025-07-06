@@ -20,8 +20,14 @@ class UpcomingExamController extends GetxController{
     };
     NetworkResponse response = await NetworkClient.multiPartRequest(url: Urls.upcomingExamUrl, fields: fields);
     if(response.statusCode == 200){
-      upcomingExamList =  response.listBody!.map((e)=>UpcomingExamModel.fromJson(e)).toList();
-      Logger().i(upcomingExamList[0].name);
+      try{
+        upcomingExamList =  response.listBody!.map((e)=>UpcomingExamModel.fromJson(e)).toList();
+        Logger().i(upcomingExamList[0].name);
+      }catch(e){
+        Logger().i(e.toString());
+        upcomingExamList = [];
+      }
     }
   }
 }
+
