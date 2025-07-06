@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_messaging_platform_interface/src/remote_notification.dart' show RemoteNotification;
 import 'package:flutter/material.dart';
 import 'package:lms/app/utils/app_colors.dart';
@@ -28,7 +29,10 @@ class _NotificationScreenState extends State<NotificationScreen> {
   Future<void> updateNotificationStatus()async{
    await  Future.delayed(const Duration(seconds: 1));
    notificationController.updateNotificationStatus();
+   await NotificationController.controller.getNotification();
   }
+
+  Iterable<RemoteMessage> NotificationList = NotificationController.controller.notificationList.reversed;
 
 
   @override
@@ -48,7 +52,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
                 child: ListView.builder(
                   itemCount: controller.notificationList.length,
                   itemBuilder: ((BuildContext context, index) {
-                    var notification = controller.notificationList[index].notification!;
+                     int  length = controller.notificationList.length;
+                    var notification = controller.notificationList[manageIndex(index, length)].notification!;
                     return buildNotificationCard(notification);
                   }),
                 ),
@@ -76,4 +81,18 @@ class _NotificationScreenState extends State<NotificationScreen> {
                     ),
                   );
   }
+
+  manageIndex(int index, int length){
+
+    int result = length-index;
+    if(result >9 ){
+      return 9;
+    }else if(result<0){
+      return 0;
+    }else{
+      return result;
+    }
+
+  }
+
 }
