@@ -10,6 +10,7 @@ class NotificationController extends GetxController{
   static NotificationController controller = Get.find<NotificationController>();
 
   List<RemoteMessage> notificationList = [];
+
   bool isActive = false ;
   final String saveNotificationKey = 'saveNotification';
 
@@ -19,6 +20,7 @@ class NotificationController extends GetxController{
     update();
     saveNotification();
     getNotification();
+    update();
   }
 
   updateNotificationStatus(){
@@ -57,7 +59,7 @@ class NotificationController extends GetxController{
       List decodedList = jsonDecode(stringNotification);
 
       // Rebuild list from saved data
-      notificationList = decodedList.map((item) {
+      List<RemoteMessage> tempLIst =  decodedList.map((item) {
         return RemoteMessage(
           data: Map<String, dynamic>.from(item['data']),
           notification: RemoteNotification(
@@ -67,8 +69,12 @@ class NotificationController extends GetxController{
         );
       }).toList();
 
-      Logger().i("Notifications loaded from local");
+      notificationList = tempLIst.reversed.toList();
+
       update();
+
+      Logger().i("Notifications loaded from local");
+
     } else {
       Logger().i("No saved notifications");
     }

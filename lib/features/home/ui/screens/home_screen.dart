@@ -140,12 +140,16 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             }
           ),
-          onPressed: () {
-            Navigator.pushNamed(context, NotificationScreen.name);
-          },
+          onPressed: onTapGoToNotificationScreen,
         ),
       ],
     );
+  }
+
+
+  onTapGoToNotificationScreen() async {
+    await NotificationController.controller.getNotification();
+    Navigator.pushNamed(context, NotificationScreen.name);
   }
 
   Widget buildDashboardSection() {
@@ -154,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
       physics: const NeverScrollableScrollPhysics(),
       crossAxisCount: 2,
       crossAxisSpacing: 16,
-      mainAxisSpacing: 16,
+       mainAxisSpacing: 16,
       children: [
         DashboardCard(
             title: 'Academic Plan',
