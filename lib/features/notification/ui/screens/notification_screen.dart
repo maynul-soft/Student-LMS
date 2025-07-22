@@ -22,18 +22,14 @@ class _NotificationScreenState extends State<NotificationScreen> {
   @override
   void initState() {
     super.initState();
-
     updateNotificationStatus();
   }
 
   Future<void> updateNotificationStatus()async{
    await  Future.delayed(const Duration(seconds: 1));
    notificationController.updateNotificationStatus();
-
+   notificationController.setNotificationStateTrue();
   }
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,12 +76,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   );
   }
 
-  // int manageIndex(int index, int length) {
-  //   int result = length - (index+1);
-  //
-  //   if (result <= 1) return 0;
-  //   if (result > 9) return 9;
-  //   return result;
-  // }
-
+  @override
+  void dispose() {
+    notificationController.setNotificationStateFalse();
+    super.dispose();
+  }
 }

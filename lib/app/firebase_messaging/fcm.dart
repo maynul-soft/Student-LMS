@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:lms/app/app.dart';
 import 'package:lms/common/controller/auth_controller.dart';
+import 'package:lms/features/home/ui/screens/home_screen.dart';
 import 'package:lms/features/notification/data/controller/notification_controller.dart';
 import 'package:lms/features/notification/ui/screens/notification_screen.dart';
 import 'package:logger/logger.dart';
@@ -16,7 +17,6 @@ class Fcm {
   RemoteMessage? notifications;
 
   Future<void> getNotification() async {
-
     await messaging.requestPermission(
       alert: true,
       announcement: false,
@@ -27,10 +27,8 @@ class Fcm {
       sound: true,
     );
 
-
     notifications = await messaging.getInitialMessage();
     Logger().i('Notifications => $notifications');
-
 
     await subscribe();
 
@@ -52,7 +50,7 @@ class Fcm {
       ''');
     NotificationController.controller.updateNotificationList(message);
 
-    navigatorKey.currentState?.pushNamed(NotificationScreen.name);
+    navigatorKey.currentState?.pushNamed(HomeScreen.name);
   }
 
   void _handelForegroundNotification(RemoteMessage message) {
@@ -65,23 +63,25 @@ class Fcm {
           notification.title,
           notification.body,
           const NotificationDetails(
-              android: AndroidNotificationDetails(
-                  'default_channel',
-                  'General',
-                  importance: Importance.max,
-                  priority: Priority.high,
+            android: AndroidNotificationDetails(
+              'default_channel',
+              'General',
+              importance: Importance.max,
+              priority: Priority.high,
+            ),
+          ),
+          payload: NotificationController.controller.isNotificationState == false? NotificationScreen.name: HomeScreen.name,
 
-              ),),
-      payload: NotificationScreen.name
       );
     }
 
     NotificationController.controller.updateNotificationList(message);
 
-    Logger().i('''
+    Logger().w('''
     Foreground Notification:
     ${message.notification?.title}
     ${message.notification?.body}
+    ${message.notification?.android!.clickAction}
     ''');
   }
 
@@ -95,15 +95,28 @@ class Fcm {
       Logger().e('Already Subscribed');
     }
   }
-
-
-
-
 }
 
 @pragma('vm:entry-point')
 Future<void> handelBackgroundNotification(RemoteMessage message) async {
   Logger().i(message);
-  Navigator.pushNamed(navigatorKey.currentContext!, NotificationScreen.name);
+  Navigator.pushNamed(navigatorKey.currentContext!, HomeScreen.name);
   NotificationController.controller.updateNotificationList(message);
 }
+
+// will use when needed the route automation
+
+// routeHandler(String? name){
+//   if(name != null && name == 'result'){
+//     return ResultScreen.name;
+//   }else if(name != null && name == 'upcoming-exam'){
+//     return UpcomingExamScreen.name;
+//   }else if(name != null && name == 'attendance'){
+//     return AttendanceScreen.name;
+//   }else if(name != null && name == 'exams'){
+//     return ExamListScreen.name;
+//   }else{
+//     return NotificationScreen.name;
+//   }
+//
+// }
