@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/snackbar/snackbar.dart';
 import 'package:lms/app/app.dart';
 import 'package:lms/app/utils/app_colors.dart';
 
@@ -28,7 +26,7 @@ import '../../../../common/data/network/urls.dart';
    Get.snackbar(
        'Login Failed..!',
        response.body!["message"],
-    duration: Duration(seconds: 3),
+    duration: const Duration(seconds: 3),
     snackPosition: SnackPosition.TOP,
     backgroundColor: AppColors.themColor,
 

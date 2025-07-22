@@ -6,7 +6,6 @@ import 'package:lms/common/controller/auth_controller.dart';
 import 'package:lms/features/notification/data/controller/notification_controller.dart';
 import 'package:lms/features/notification/ui/screens/notification_screen.dart';
 import 'package:logger/logger.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class Fcm {
   FirebaseMessaging messaging = FirebaseMessaging.instance;

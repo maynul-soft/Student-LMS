@@ -5,10 +5,10 @@ class ReusableTable extends StatefulWidget {
   final List<String> columns;
 
   const ReusableTable({
-    Key? key,
+    super.key,
     required this.data,
     required this.columns,
-  }) : super(key: key);
+  });
 
   @override
   _ReusableTableState createState() => _ReusableTableState();
@@ -51,7 +51,7 @@ class _ReusableTableState extends State<ReusableTable> {
                     child: Table(
                       columnWidths: {
                         for (var i = 0; i < widget.columns.length; i++)
-                          i: FlexColumnWidth(),
+                          i: const FlexColumnWidth(),
                       },
                       border: TableBorder.all(color: Colors.black),
                       children: [
@@ -62,7 +62,7 @@ class _ReusableTableState extends State<ReusableTable> {
                                     child: Center(
                                       child: Text(
                                         column,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ),
@@ -81,7 +81,7 @@ class _ReusableTableState extends State<ReusableTable> {
                     return Table(
                       columnWidths: {
                         for (var i = 0; i < widget.columns.length; i++)
-                          i: FlexColumnWidth(),
+                          i: const FlexColumnWidth(),
                       },
                       border: TableBorder.all(color: Colors.black),
                       children: [
@@ -103,21 +103,21 @@ class _ReusableTableState extends State<ReusableTable> {
             ],
           ),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             ElevatedButton(
               onPressed:
                   currentPage > 0 ? () => _goToPage(currentPage - 1) : null,
-              child: Text('Previous'),
+              child: const Text('Previous'),
             ),
             Text('Page ${currentPage + 1} of $pageCount'),
             ElevatedButton(
               onPressed: currentPage < pageCount - 1
                   ? () => _goToPage(currentPage + 1)
                   : null,
-              child: Text('Next'),
+              child: const Text('Next'),
             ),
           ],
         ),

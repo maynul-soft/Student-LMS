@@ -70,70 +70,67 @@ class _UpcomingExamScreenState extends State<UpcomingExamScreen> {
       ),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal, // horizontal scroll enable korbe
-        child: SizedBox(
-          width: 600,
-          child: Table(
-            columnWidths: const {
-              0: FlexColumnWidth(0.7),
-              1: FlexColumnWidth(3),
-              2: FlexColumnWidth(3),
-              3: FlexColumnWidth(5),
-            },
-            border: TableBorder.all(),
-            children: [
-              const TableRow(children: [
+        child: Table(
+          columnWidths: const {
+            0: IntrinsicColumnWidth(),
+            1: IntrinsicColumnWidth(),
+            2: IntrinsicColumnWidth(),
+            3: IntrinsicColumnWidth(),
+          },
+          border: TableBorder.all(),
+          children: [
+            const TableRow(children: [
+              Padding(
+                padding: EdgeInsets.all(5),
+                child: Center(child: Text('Sl')),
+              ),
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: Center(child: Text('Exam name')),
+              ),
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: Center(child: Text('Course name')),
+              ),
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: Center(child: Text('Date')),
+              ),
+              // Padding(
+              //   padding: EdgeInsets.all(10),
+              //   child: Text('Date'),
+              // ),
+            ]),
+            ...upcomingExamController.upcomingExamList
+                .asMap()
+                .entries
+                .map((e) {
+              int index = e.key + 1;
+              var value = e.value;
+              return TableRow(children: [
                 Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Text('Sl'),
+                  padding: const EdgeInsets.all(10),
+                  child: Text(index.toString()),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Text('Exam name'),
+                  padding: const EdgeInsets.all(10),
+                  child: Text(value.name),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Text('Course name'),
+                  padding: const EdgeInsets.all(10),
+                  child: Text(value.course),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Text('Date'),
+                  padding: const EdgeInsets.all(10),
+                  child: Text(value.date),
                 ),
                 // Padding(
                 //   padding: EdgeInsets.all(10),
                 //   child: Text('Date'),
                 // ),
-              ]),
-              ...upcomingExamController.upcomingExamList
-                  .asMap()
-                  .entries
-                  .map((e) {
-                int index = e.key + 1;
-                var value = e.value;
-                return TableRow(children: [
-                  Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Text(index.toString()),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Text(value.name),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Text(value.course),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Text(value.date),
-                  ),
-                  // Padding(
-                  //   padding: EdgeInsets.all(10),
-                  //   child: Text('Date'),
-                  // ),
-                ]);
-              })
-            ],
-          ),
+              ]);
+            })
+          ],
         ),
       ),
     );

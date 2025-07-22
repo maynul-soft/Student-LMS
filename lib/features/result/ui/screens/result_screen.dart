@@ -129,92 +129,88 @@ class _ResultScreenState extends State<ResultScreen> {
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             // horizontal scroll enable korbe
-            child: SizedBox(
-              width: 700
-              ,
-              child: Table(
-                columnWidths: const {
-                  0: FlexColumnWidth(1),
-                  1: FlexColumnWidth(2),
-                  2: FlexColumnWidth(2.2),
-                  3: FlexColumnWidth(1.5),
-                  4: FlexColumnWidth(1.5),
-                  5: FlexColumnWidth(1.5),
-                  6: FlexColumnWidth(1.5),
-                },
-                border: TableBorder.all(),
-                children: [
-                   const TableRow(children: [
+            child: Table(
+              columnWidths: const {
+                0: IntrinsicColumnWidth(),
+                1: IntrinsicColumnWidth(),
+                2: IntrinsicColumnWidth(),
+                3: IntrinsicColumnWidth(),
+                4: IntrinsicColumnWidth(),
+                5: IntrinsicColumnWidth(),
+                6: IntrinsicColumnWidth(),
+              },
+              border: TableBorder.all(),
+              children: [
+                 const TableRow(children: [
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Center(child: Text('Sl')),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Center(child: Text('Exam name')),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Center(child: Text('Paper mark')),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Center(child: Text('Total mark')),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Center(child: Text('Obtained mark')),
+                  ),Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Center(child: Text('Average')),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Center(child: Text('Grade',style: TextStyle(color: Colors.black),),),
+                  ),
+                  // Padding(
+                  //   padding: EdgeInsets.all(10),
+                  //   child: Text('Date'),
+                  // ),
+                ]),
+                ...resultContrller.filteredList.asMap().entries.map((e) {
+                  int index = e.key + 1;
+                  var value = e.value;
+                  return TableRow(children: [
                     Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Center(child: Text('Sl')),
+                      padding: const EdgeInsets.all(10),
+                      child: Center(child: Text(index.toString())),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Center(child: Text('Exam name')),
+                      padding: const EdgeInsets.all(10),
+                      child: Text(value.examName),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Center(child: Text('Paper mark')),
+                      padding: const EdgeInsets.all(10),
+                      child: Text(value.paperMark),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Center(child: Text('Total mark')),
+                      padding: const EdgeInsets.all(10),
+                      child: Center(child: Text(value.totalMark.toString())),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Center(child: Text('Obtained mark')),
+                      padding: const EdgeInsets.all(10),
+                      child: Center(child: Text(value.obtainedMark.toString())),
                     ),Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Center(child: Text('Average')),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Center(child: Text('Grade',style: TextStyle(color: Colors.black),),),
+                      padding: const EdgeInsets.all(10),
+                      child: Center(child: Text(value.average.toString())),
+                    ),Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: SizedBox( height: 40 ,child: Center(child: Text(value.grade,style: const TextStyle(color:  Colors.black),))),
                     ),
                     // Padding(
                     //   padding: EdgeInsets.all(10),
                     //   child: Text('Date'),
                     // ),
-                  ]),
-                  ...resultContrller.filteredList.asMap().entries.map((e) {
-                    int index = e.key + 1;
-                    var value = e.value;
-                    return TableRow(children: [
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Center(child: Text(index.toString())),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Text(value.examName),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Text(value.paperMark),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Center(child: Text(value.totalMark.toString())),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Center(child: Text(value.obtainedMark.toString())),
-                      ),Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Center(child: Text(value.average.toString())),
-                      ),Padding(
-                        padding: EdgeInsets.all(10),
-                        child: SizedBox( height: 40 ,child: Center(child: Text(value.grade,style: const TextStyle(color:  Colors.black),))),
-                      ),
-                      // Padding(
-                      //   padding: EdgeInsets.all(10),
-                      //   child: Text('Date'),
-                      // ),
-                    ]);
-                  })
-                ],
-              ),
+                  ]);
+                })
+              ],
             ),
           ),
         ),

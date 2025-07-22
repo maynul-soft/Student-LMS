@@ -74,7 +74,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                       ),
                       subtitle: Text(
                         notification.body!,
-                        style: TextStyle(fontSize: 15, color: Colors.black54),
+                        style: const TextStyle(fontSize: 15, color: Colors.black54),
                       ),
                     ),
                   );

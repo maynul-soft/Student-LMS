@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:lms/features/upcoming_exam/data/models/upcoming_exam_model.dart';
 import 'package:logger/logger.dart';
 import '../../../../common/controller/auth_controller.dart';
 import '../../../../common/data/network/network_client.dart';

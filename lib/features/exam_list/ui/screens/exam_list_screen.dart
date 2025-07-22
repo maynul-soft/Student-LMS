@@ -34,6 +34,10 @@ class _ExamListScreenState extends State<ExamListScreen> {
     setState(() {});
   }
 
+  subText(String text){
+    return text.replaceAll(RegExp(r'<[^>]*>'), '').trim();
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width - 30;
@@ -132,80 +136,87 @@ class _ExamListScreenState extends State<ExamListScreen> {
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             // horizontal scroll enable korbe
-            child: SizedBox(
-              width: 600,
-              child: Table(
-                columnWidths: const {
-                  0: FlexColumnWidth(1),
-                  1: FlexColumnWidth(3),
-                  2: FlexColumnWidth(3),
-                  3: FlexColumnWidth(3),
-                  4: FlexColumnWidth(3),
-                },
-                border: TableBorder.all(),
-                children: [
-                  const TableRow(children: [
+            child: Table(
+              columnWidths: const {
+                0: IntrinsicColumnWidth(),
+                1: IntrinsicColumnWidth(),
+                2: IntrinsicColumnWidth(),
+                3: IntrinsicColumnWidth(),
+                4: IntrinsicColumnWidth(),
+                5: IntrinsicColumnWidth(),
+              },
+              border: TableBorder.all(),
+              children: [
+                const TableRow(children: [
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Center(child: Text('Sl')),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Center(child: Text('Exam name')),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Center(child: Text('Course')),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Center(child: Text('Duration')),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Center(child: Text('Status')),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Center(child: Text('syllabus')),
+                  ),
+                  // Padding(
+                  //   padding: EdgeInsets.all(10),
+                  //   child: Text('Date'),
+                  // ),
+                ]),
+                ...examController.filteredList.asMap().entries.map((e) {
+                  int index = e.key + 1;
+                  var value = e.value;
+                  return TableRow(children: [
                     Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Text('Sl'),
+                      padding: const EdgeInsets.all(10),
+                      child: Text(index.toString()),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Text('Exam name'),
+                      padding: const EdgeInsets.all(10),
+                      child: Text(value.name),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Text('Course name'),
+                      padding: const EdgeInsets.all(10),
+                      child: Text(value.course),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Text('Duration'),
+                      padding: const EdgeInsets.all(10),
+                      child: Text(value.duration),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Text('Status'),
+                      padding: const EdgeInsets.all(10),
+                      child: Text(value.status),
+                    ),Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Text(subText(value.syllabus))
                     ),
                     // Padding(
                     //   padding: EdgeInsets.all(10),
                     //   child: Text('Date'),
                     // ),
-                  ]),
-                  ...examController.filteredList.asMap().entries.map((e) {
-                    int index = e.key + 1;
-                    var value = e.value;
-                    return TableRow(children: [
-                      Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Text(index.toString()),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Text(value.name),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Text(value.course),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Text(value.duration),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Text(value.status),
-                      ),
-                      // Padding(
-                      //   padding: EdgeInsets.all(10),
-                      //   child: Text('Date'),
-                      // ),
-                    ]);
-                  })
-                ],
-              ),
+                  ]);
+                })
+              ],
             ),
           ),
         ),
       );
     });
+    
+    
   }
 }
