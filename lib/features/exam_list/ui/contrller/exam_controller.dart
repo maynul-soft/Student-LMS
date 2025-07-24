@@ -11,7 +11,6 @@ class ExamController extends GetxController{
   List<ExamModel> filteredList =[];
   List<ExamModel> onChangeList =[];
 
-
   Future<void>getExamListData()async{
     String id = AuthController.userId.toString();
     String password = AuthController.password.toString();
@@ -21,7 +20,7 @@ class ExamController extends GetxController{
       'password': password
     };
     NetworkResponse response = await NetworkClient.multiPartRequest(url: Urls.examListUrl, fields: fields);
-    Logger().e(response.listBody![0]);
+    Logger().e(response.listBody?[0]??'');
     if(response.statusCode == 200){
       examList =  (response.listBody![0] as List).map((e)=>ExamModel.fromJson(e)).toList() ;
       // Logger().i(examList[0].name);

@@ -68,69 +68,73 @@ class _UpcomingExamScreenState extends State<UpcomingExamScreen> {
         padding: EdgeInsets.only(top: 250),
         child: Center(child: CircularProgressIndicator()),
       ),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal, // horizontal scroll enable korbe
-        child: Table(
-          columnWidths: const {
-            0: IntrinsicColumnWidth(),
-            1: IntrinsicColumnWidth(),
-            2: IntrinsicColumnWidth(),
-            3: IntrinsicColumnWidth(),
-          },
-          border: TableBorder.all(),
-          children: [
-            const TableRow(children: [
-              Padding(
-                padding: EdgeInsets.all(5),
-                child: Center(child: Text('Sl')),
-              ),
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: Center(child: Text('Exam name')),
-              ),
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: Center(child: Text('Course name')),
-              ),
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: Center(child: Text('Date')),
-              ),
-              // Padding(
-              //   padding: EdgeInsets.all(10),
-              //   child: Text('Date'),
-              // ),
-            ]),
-            ...upcomingExamController.upcomingExamList
-                .asMap()
-                .entries
-                .map((e) {
-              int index = e.key + 1;
-              var value = e.value;
-              return TableRow(children: [
+      child: Visibility(
+        visible: upcomingExamController.upcomingExamList.isNotEmpty,
+        replacement: const Text('No Data found'),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal, // horizontal scroll enable korbe
+          child: Table(
+            columnWidths: const {
+              0: IntrinsicColumnWidth(),
+              1: IntrinsicColumnWidth(),
+              2: IntrinsicColumnWidth(),
+              3: IntrinsicColumnWidth(),
+            },
+            border: TableBorder.all(),
+            children: [
+              const TableRow(children: [
                 Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Text(index.toString()),
+                  padding: EdgeInsets.all(5),
+                  child: Center(child: Text('Sl')),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Text(value.name),
+                  padding: EdgeInsets.all(10),
+                  child: Center(child: Text('Exam name')),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Text(value.course),
+                  padding: EdgeInsets.all(10),
+                  child: Center(child: Text('Course name')),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Text(value.date),
+                  padding: EdgeInsets.all(10),
+                  child: Center(child: Text('Date')),
                 ),
                 // Padding(
                 //   padding: EdgeInsets.all(10),
                 //   child: Text('Date'),
                 // ),
-              ]);
-            })
-          ],
+              ]),
+              ...upcomingExamController.upcomingExamList
+                  .asMap()
+                  .entries
+                  .map((e) {
+                int index = e.key + 1;
+                var value = e.value;
+                return TableRow(children: [
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Text(index.toString()),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Text(value.name),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Text(value.course),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Text(value.date),
+                  ),
+                  // Padding(
+                  //   padding: EdgeInsets.all(10),
+                  //   child: Text('Date'),
+                  // ),
+                ]);
+              })
+            ],
+          ),
         ),
       ),
     );

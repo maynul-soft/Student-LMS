@@ -22,7 +22,7 @@ class ResultController extends GetxController{
       'password': password
     };
     NetworkResponse response = await NetworkClient.multiPartRequest(url: Urls.resultUrl, fields: fields);
-    Logger().e(response.listBody![0]);
+    Logger().e(response.listBody?[0]??'');
     if(response.statusCode == 200){
       examList =  (response.listBody![0] as List).map((e)=>ResultModel.fromJson(e)).toList() ;
       // Logger().i(examList[0].name);
