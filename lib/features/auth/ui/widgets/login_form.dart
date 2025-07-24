@@ -28,7 +28,7 @@ class _LoginFromState extends State<LoginFrom> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const Text(
-                'Welcome to Legends Chemistry',
+                'Welcome to Legends Physics',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20.0,

@@ -55,17 +55,17 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.themColor,
+      backgroundColor: AppColors.themColor.shade700,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(AssetsPaths.appLogoPng,
             height: 300,
-              width: 300,
-              fit: BoxFit.cover,
+              width: 350,
+              fit: BoxFit.fill,
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 2),
             FadeTransition(
               opacity: _animation,
               child: Container(
@@ -76,7 +76,7 @@ class _SplashScreenState extends State<SplashScreen>
                   borderRadius: BorderRadius.circular(12.0), // Rounded corners
                 ),
                 child: const Text(
-                  'Conducted By Parvez Sir',
+                  'Conducted By Jahangir Sir',
                   style: TextStyle(
                     fontSize: 14,
                     color: Color(0xFF9BD770), // Text color

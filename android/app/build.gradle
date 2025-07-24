@@ -2,6 +2,7 @@ plugins {
     id "com.android.application"
     // START: FlutterFire Configuration
     id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
     // END: FlutterFire Configuration
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
@@ -41,12 +42,12 @@ android {
         }
     }
 
-    namespace "com.app.legends_chemistry"
+    namespace "com.app.lms"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
     defaultConfig {
-        applicationId = "com.app.legends_chemistry"
+        applicationId = "com.app.lms"
         minSdk = 21
         targetSdk = 34
         // Accessing version code and name directly from the flutter object (from pubspec.yaml)

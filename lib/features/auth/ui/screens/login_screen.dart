@@ -23,7 +23,7 @@ class LoginScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              'Legends Chemistry',
+              'Legends Physics',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -40,7 +40,7 @@ class LoginScreen extends StatelessWidget {
                     Radius.circular(12.0)), // Rounded corners
               ),
               child: const Text(
-                'Conducted By Parvez Sir',
+                'Conducted By Jahangir Sir',
                 style: TextStyle(
                   fontSize: 13,
                   color: Color(0xFF9BD770), // Text color
