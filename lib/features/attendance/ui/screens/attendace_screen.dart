@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lms/app/constants/app_text.dart';
 import 'package:lms/app/utils/app_colors.dart';
 import 'package:get/get.dart';
 
@@ -38,7 +39,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
       appBar: AppBar(
           backgroundColor: AppColors.themColor,
           title: const Text(
-            'LEGENDS CHEMISTRY',
+            AppTexts.legendsChemistryCapital,
             style: TextStyle(fontSize: 25, color: Colors.black),
           )),
       body: SingleChildScrollView(

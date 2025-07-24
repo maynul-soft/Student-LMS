@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lms/app/constants/app_text.dart';
 import 'package:lms/app/utils/app_colors.dart';
 import 'package:lms/features/upcoming_exam/ui/contrller/upcoming_exam_controller.dart';
 
@@ -36,7 +37,7 @@ class _UpcomingExamScreenState extends State<UpcomingExamScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('LEGENDS CHEMISTRY'),
+        title: const Text(AppTexts.legendsChemistryCapital),
         backgroundColor: AppColors.themColor,
       ),
       body: Padding(
@@ -70,7 +71,7 @@ class _UpcomingExamScreenState extends State<UpcomingExamScreen> {
       ),
       child: Visibility(
         visible: upcomingExamController.upcomingExamList.isNotEmpty,
-        replacement: const Text('No Data found'),
+        replacement: const Text(AppTexts.noDataFound),
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal, // horizontal scroll enable korbe
           child: Table(

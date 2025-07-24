@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lms/app/constants/app_text.dart';
 import 'package:lms/features/auth/data/services/login_service.dart';
 import '../../../../common/widgets/input_field.dart';
 
@@ -28,7 +29,7 @@ class _LoginFromState extends State<LoginFrom> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const Text(
-                'Welcome to Legends Chemistry',
+                'Welcome to ${AppTexts.legendsChemistryInitialCapital}',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20.0,

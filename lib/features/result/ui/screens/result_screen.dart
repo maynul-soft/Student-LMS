@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lms/app/constants/app_text.dart';
 import 'package:lms/app/utils/app_colors.dart';
 import 'package:lms/features/result/ui/contrller/result_controller.dart';
 
@@ -39,7 +40,7 @@ class _ResultScreenState extends State<ResultScreen> {
     double width = MediaQuery.of(context).size.width - 30;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('LEGENDS CHEMISTRY'),
+        title: const Text(AppTexts.legendsChemistryCapital),
         backgroundColor: AppColors.themColor,
       ),
       body: Padding(
@@ -124,7 +125,7 @@ class _ResultScreenState extends State<ResultScreen> {
           visible: resultContrller.filteredList.isNotEmpty,
           replacement: const Padding(
             padding: EdgeInsets.only(top: 250),
-            child: Center(child: Text('No Data found')),
+            child: Center(child: Text(AppTexts.noDataFound)),
           ),
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,

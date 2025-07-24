@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lms/app/constants/app_text.dart';
 import 'package:lms/app/utils/app_colors.dart';
 import 'package:lms/app/utils/assets_path.dart';
 import 'package:lms/features/auth/ui/screens/login_screen.dart';
@@ -76,7 +77,7 @@ class _SplashScreenState extends State<SplashScreen>
                   borderRadius: BorderRadius.circular(12.0), // Rounded corners
                 ),
                 child: const Text(
-                  'Conducted By Parvez Sir',
+                  AppTexts.conductedBy,
                   style: TextStyle(
                     fontSize: 14,
                     color: Color(0xFF9BD770), // Text color

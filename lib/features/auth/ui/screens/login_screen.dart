@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lms/app/constants/app_text.dart';
 import 'package:lms/app/utils/app_colors.dart';
 import 'package:lms/features/auth/ui/widgets/login_form.dart';
 
@@ -23,7 +24,7 @@ class LoginScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              'Legends Chemistry',
+              AppTexts.legendsChemistryCapital,
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -40,7 +41,7 @@ class LoginScreen extends StatelessWidget {
                     Radius.circular(12.0)), // Rounded corners
               ),
               child: const Text(
-                'Conducted By Parvez Sir',
+                AppTexts.conductedBy,
                 style: TextStyle(
                   fontSize: 13,
                   color: Color(0xFF9BD770), // Text color

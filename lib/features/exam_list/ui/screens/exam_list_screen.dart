@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lms/app/constants/app_text.dart';
 import 'package:lms/app/utils/app_colors.dart';
 import 'package:lms/features/exam_list/ui/contrller/exam_controller.dart';
 
@@ -43,7 +44,7 @@ class _ExamListScreenState extends State<ExamListScreen> {
     double width = MediaQuery.of(context).size.width - 30;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('LEGENDS CHEMISTRY'),
+        title: const Text(AppTexts.legendsChemistryCapital),
         backgroundColor: AppColors.themColor,
       ),
       body: Padding(
@@ -131,11 +132,11 @@ class _ExamListScreenState extends State<ExamListScreen> {
           visible: examController.filteredList.isNotEmpty,
           replacement: const Padding(
             padding: EdgeInsets.only(top: 250),
-            child: Center(child: Text('No Data found')),
+            child: Center(child: Text(AppTexts.noDataFound)),
           ),
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            // horizontal scroll enable korbe
+            // will enable horizontal scroll
             child: Table(
               columnWidths: const {
                 0: IntrinsicColumnWidth(),
