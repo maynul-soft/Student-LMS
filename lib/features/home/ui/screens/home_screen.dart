@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lms/app/constants/app_text.dart';
 import 'package:lms/common/controller/auth_controller.dart';
 import 'package:lms/common/data/models/student_data_model.dart';
 import 'package:lms/features/auth/ui/screens/login_screen.dart';
@@ -119,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Colors.transparent,
       elevation: 0,
       title: const Text(
-        'LEGENDS CHEMISTRY',
+        AppTexts.legendsChemistryCapital,
         style: TextStyle(color: Colors.black, fontSize: 20),
       ),
       actions: [
