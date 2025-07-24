@@ -11,6 +11,7 @@ import 'package:lms/features/notification/ui/screens/notification_screen.dart';
 import 'package:lms/features/result/ui/screens/result_screen.dart';
 import 'package:lms/features/upcoming_exam/ui/screens/upcoming_exam_screen.dart';
 import 'package:get/get.dart';
+
 import '../../../../app/utils/app_colors.dart';
 import '../../../attendance/ui/screens/attendace_screen.dart';
 // Ensure this path is correct
@@ -118,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Colors.transparent,
       elevation: 0,
       title: const Text(
-        'LEGENDS PHYSICS',
+        'LEGENDS CHEMISTRY',
         style: TextStyle(color: Colors.black, fontSize: 20),
       ),
       actions: [
