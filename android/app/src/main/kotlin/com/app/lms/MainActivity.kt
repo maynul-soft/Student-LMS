@@ -1,4 +1,4 @@
-package com.physic.lms
+package com.bangla.lms
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:867878146987:android:0e2a60bf92d7099f4678ee",
+        "mobilesdk_app_id": "1:867878146987:android:54b3d3a239b84d984678ee",
         "android_client_info": {
-          "package_name": "com.physic.lms"
+          "package_name": "com.bangla.lms"
         }
       },
       "oauth_client": [],

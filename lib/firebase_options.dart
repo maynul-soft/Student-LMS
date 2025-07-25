@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCsyIh8cr8AocptXjMS5x-dGpYprpY6emk',
-    appId: '1:867878146987:android:0e2a60bf92d7099f4678ee',
+    appId: '1:867878146987:android:54b3d3a239b84d984678ee',
     messagingSenderId: '867878146987',
     projectId: 'legendsbangla-31a62',
     storageBucket: 'legendsbangla-31a62.firebasestorage.app',
@@ -59,13 +59,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyAmOMmmPA3dhek7cyhIdimcH_sHBCv14H8',
-    appId: '1:867878146987:ios:8de6b36207a411cf4678ee',
+    appId: '1:867878146987:ios:4887ffdf6f0fd2204678ee',
     messagingSenderId: '867878146987',
     projectId: 'legendsbangla-31a62',
     storageBucket: 'legendsbangla-31a62.firebasestorage.app',
-    iosBundleId: 'com.physics.lms.RunnerTests',
+    iosBundleId: 'com.bangla.lms.RunnerTests',
   );
-
-
 
 }

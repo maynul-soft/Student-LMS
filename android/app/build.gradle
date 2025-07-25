@@ -42,12 +42,12 @@ android {
         }
     }
 
-    namespace "com.physic.lms"
+    namespace "com.bangla.lms"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
     defaultConfig {
-        applicationId = "com.physic.lms"
+        applicationId = "com.bangla.lms"
         minSdk = 21
         targetSdk = 34
         // Accessing version code and name directly from the flutter object (from pubspec.yaml)
