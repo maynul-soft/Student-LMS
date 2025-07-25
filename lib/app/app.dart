@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
-      title: 'JM Sir',
+      title: 'Jahangir Sir',
       theme: AppTheme.lightThemeData,
       home: const SplashScreen(),
       initialRoute: SplashScreen.name,

@@ -1,4 +1,4 @@
-package com.app.legends_chemistry
+package com.physic.lms
 
 import io.flutter.embedding.android.FlutterActivity
 

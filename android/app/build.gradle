@@ -42,12 +42,12 @@ android {
         }
     }
 
-    namespace "com.app.legends_chemistry"
+    namespace "com.physic.lms"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
     defaultConfig {
-        applicationId = "com.app.legends_chemistry"
+        applicationId = "com.physic.lms"
         minSdk = 21
         targetSdk = 34
         // Accessing version code and name directly from the flutter object (from pubspec.yaml)
