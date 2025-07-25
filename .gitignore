@@ -46,4 +46,3 @@ app.*.map.json
 .fvm/
 key.properties
 my-release-key.jks
-lib/firebase_options.dart
