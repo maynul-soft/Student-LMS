@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "27874584030",
-    "project_id": "legendsphysics-6e1d6",
-    "storage_bucket": "legendsphysics-6e1d6.firebasestorage.app"
+    "project_number": "867878146987",
+    "project_id": "legendsbangla-31a62",
+    "storage_bucket": "legendsbangla-31a62.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:27874584030:android:c5cdbaccf7d744c825e94f",
+        "mobilesdk_app_id": "1:867878146987:android:0e2a60bf92d7099f4678ee",
         "android_client_info": {
           "package_name": "com.physic.lms"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyA_SrRImU6TEIbaTw6A4cQmGQunK4z9gUQ"
+          "current_key": "AIzaSyCsyIh8cr8AocptXjMS5x-dGpYprpY6emk"
         }
       ],
       "services": {

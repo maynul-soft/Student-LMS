@@ -24,7 +24,7 @@ class LoginScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              AppTexts.legendsPhysicsCapital,
+              AppTexts.legendsBanglaCapital,
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,

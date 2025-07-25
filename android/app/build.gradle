@@ -58,8 +58,8 @@ android {
     buildTypes {
         release {
             // Apply the custom 'release' signing configuration
-//            signingConfig signingConfigs.release
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
+//            signingConfig signingConfigs.debug
 
 //            signingConfig signingConfigs.debug
             // Enable minification and resource shrinking for production builds

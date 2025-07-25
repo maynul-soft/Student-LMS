@@ -37,7 +37,7 @@ class _UpcomingExamScreenState extends State<UpcomingExamScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(AppTexts.legendsPhysicsCapital),
+        title: const Text(AppTexts.legendsBanglaCapital),
         backgroundColor: AppColors.themColor,
       ),
       body: Padding(

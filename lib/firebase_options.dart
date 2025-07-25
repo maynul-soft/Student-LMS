@@ -35,7 +35,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
+              'you can reconfigure this by running the FlutterFire CLI again.',
         );
       case TargetPlatform.linux:
         throw UnsupportedError(
@@ -50,20 +50,22 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyA_SrRImU6TEIbaTw6A4cQmGQunK4z9gUQ',
-    appId: '1:27874584030:android:c5cdbaccf7d744c825e94f',
-    messagingSenderId: '27874584030',
-    projectId: 'legendsphysics-6e1d6',
-    storageBucket: 'legendsphysics-6e1d6.firebasestorage.app',
+    apiKey: 'AIzaSyCsyIh8cr8AocptXjMS5x-dGpYprpY6emk',
+    appId: '1:867878146987:android:0e2a60bf92d7099f4678ee',
+    messagingSenderId: '867878146987',
+    projectId: 'legendsbangla-31a62',
+    storageBucket: 'legendsbangla-31a62.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAbsubT_YzpHEr1rRN9kcLjzfbfmkeKMUA',
-    appId: '1:27874584030:ios:021de21053257d3c25e94f',
-    messagingSenderId: '27874584030',
-    projectId: 'legendsphysics-6e1d6',
-    storageBucket: 'legendsphysics-6e1d6.firebasestorage.app',
+    apiKey: 'AIzaSyAmOMmmPA3dhek7cyhIdimcH_sHBCv14H8',
+    appId: '1:867878146987:ios:8de6b36207a411cf4678ee',
+    messagingSenderId: '867878146987',
+    projectId: 'legendsbangla-31a62',
+    storageBucket: 'legendsbangla-31a62.firebasestorage.app',
     iosBundleId: 'com.physics.lms.RunnerTests',
   );
+
+
 
 }

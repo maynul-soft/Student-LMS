@@ -44,7 +44,7 @@ class _ExamListScreenState extends State<ExamListScreen> {
     double width = MediaQuery.of(context).size.width - 30;
     return Scaffold(
       appBar: AppBar(
-        title: const Text(AppTexts.legendsPhysicsCapital),
+        title: const Text(AppTexts.legendsBanglaCapital),
         backgroundColor: AppColors.themColor,
       ),
       body: Padding(
