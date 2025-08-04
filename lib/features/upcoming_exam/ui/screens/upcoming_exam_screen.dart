@@ -71,7 +71,7 @@ class _UpcomingExamScreenState extends State<UpcomingExamScreen> {
       ),
       child: Visibility(
         visible: upcomingExamController.upcomingExamList.isNotEmpty,
-        replacement: const Text(AppTexts.noDataFound),
+        replacement: Center(child: const Text(AppTexts.noDataFound)),
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal, // horizontal scroll enable korbe
           child: Table(
