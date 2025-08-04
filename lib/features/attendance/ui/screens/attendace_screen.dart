@@ -39,7 +39,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
       appBar: AppBar(
           backgroundColor: AppColors.themColor,
           title: const Text(
-            AppTexts.legendsBanglaCapital,
+            AppTexts.legendsPhysicsCapital,
             style: TextStyle(fontSize: 25, color: Colors.black),
           )),
       body: SingleChildScrollView(

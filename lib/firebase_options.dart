@@ -50,20 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCsyIh8cr8AocptXjMS5x-dGpYprpY6emk',
-    appId: '1:867878146987:android:54b3d3a239b84d984678ee',
-    messagingSenderId: '867878146987',
-    projectId: 'legendsbangla-31a62',
-    storageBucket: 'legendsbangla-31a62.firebasestorage.app',
+    apiKey: 'AIzaSyDvfLqU1oM5hcjOcG58zlIFshCQFZlnLFI',
+    appId: '1:224401537203:android:ad533a7a5310c6548c98c6',
+    messagingSenderId: '224401537203',
+    projectId: 'legendsphysics-88f94',
+    storageBucket: 'legendsphysics-88f94.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAmOMmmPA3dhek7cyhIdimcH_sHBCv14H8',
-    appId: '1:867878146987:ios:4887ffdf6f0fd2204678ee',
-    messagingSenderId: '867878146987',
-    projectId: 'legendsbangla-31a62',
-    storageBucket: 'legendsbangla-31a62.firebasestorage.app',
-    iosBundleId: 'com.bangla.lms.RunnerTests',
+    apiKey: 'AIzaSyB4ODFQqGmJPN_oOvScDf1Lf2LHVd-I354',
+    appId: '1:224401537203:ios:c0ffb6a8c0ffcd9b8c98c6',
+    messagingSenderId: '224401537203',
+    projectId: 'legendsphysics-88f94',
+    storageBucket: 'legendsphysics-88f94.firebasestorage.app',
+    iosBundleId: 'com.physics.lms.RunnerTests',
   );
 
 }

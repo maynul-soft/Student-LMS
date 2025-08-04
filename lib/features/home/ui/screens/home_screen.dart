@@ -120,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Colors.transparent,
       elevation: 0,
       title: const Text(
-        AppTexts.legendsBanglaCapital,
+        AppTexts.legendsPhysicsCapital,
         style: TextStyle(color: Colors.black, fontSize: 20),
       ),
       actions: [
