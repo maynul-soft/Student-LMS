@@ -192,15 +192,15 @@ class _ExamListScreenState extends State<ExamListScreen> {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(10),
-                      child: Text(value.course),
+                      child: Center(child: Text(value.course)),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(10),
-                      child: Text(value.duration),
+                      child: Center(child: Text(value.duration)),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(10),
-                      child: Text(value.status),
+                      child: Center(child: Text(value.status)),
                     ),Padding(
                       padding: const EdgeInsets.all(10),
                       child: Text(subText(value.syllabus))
