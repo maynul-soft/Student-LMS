@@ -49,7 +49,7 @@ android {
     defaultConfig {
         applicationId = "com.app.lms"
         minSdk = 21
-        targetSdk = 34
+        targetSdk = 35
         // Accessing version code and name directly from the flutter object (from pubspec.yaml)
         versionCode = flutter.versionCode
         versionName = flutter.versionName
