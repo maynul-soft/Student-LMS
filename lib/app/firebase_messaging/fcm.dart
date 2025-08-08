@@ -58,6 +58,7 @@ class Fcm {
     AndroidNotification? android = message.notification?.android;
 
     if (notification != null && android != null) {
+      String? currentRoute = ModalRoute.of(navigatorKey.currentContext!)?.settings.name;
       flutterLocalNotificationsPlugin.show(
           notification.hashCode,
           notification.title,
@@ -70,8 +71,7 @@ class Fcm {
               priority: Priority.high,
             ),
           ),
-          payload: NotificationController.controller.isNotificationState == false? NotificationScreen.name: HomeScreen.name,
-
+          payload: currentRoute != NotificationScreen.name ? NotificationScreen.name: HomeScreen.name,
       );
     }
 
