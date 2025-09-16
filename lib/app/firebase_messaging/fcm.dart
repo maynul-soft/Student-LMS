@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -11,12 +13,13 @@ import 'package:logger/logger.dart';
 class Fcm {
   FirebaseMessaging messaging = FirebaseMessaging.instance;
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
+  FlutterLocalNotificationsPlugin();
 
   String? token;
   RemoteMessage? notifications;
 
   Future<void> getNotification() async {
+    // Request notification permissions for all platforms once.
     await messaging.requestPermission(
       alert: true,
       announcement: false,
@@ -27,26 +30,38 @@ class Fcm {
       sound: true,
     );
 
+    // Get the FCM token and listen for refreshes immediately after permission.
+    // This is crucial for both iOS and Android.
+    token = await messaging.getToken();
+    if (token != null) {
+      Logger().i('FCM Token: $token');
+    } else {
+      Logger().w('FCM Token is null. Check your configuration.');
+    }
+
+    // Listen for token refreshes
+    messaging.onTokenRefresh.listen((newToken) {
+      token = newToken;
+      Logger().i('FCM Token refreshed: $token');
+    });
+
     notifications = await messaging.getInitialMessage();
     Logger().i('Notifications => $notifications');
 
     await subscribe();
 
+    // Set up listeners for messages after the token has been fetched.
     FirebaseMessaging.onMessage.listen(_handelForegroundNotification);
 
     FirebaseMessaging.onMessageOpenedApp.listen(_handelNotification);
 
     FirebaseMessaging.onBackgroundMessage(handelBackgroundNotification);
-
-    token = await messaging.getToken();
-    messaging.onTokenRefresh.listen((newToken) => token = newToken);
-    Logger().i(token);
   }
 
   void _handelNotification(RemoteMessage message) {
     Logger().i('''
       ${message.notification?.title}
-      ${message.notification?.body}
+      ${message.notification?.body} 
       ''');
     NotificationController.controller.updateNotificationList(message);
 
@@ -59,19 +74,20 @@ class Fcm {
 
     if (notification != null && android != null) {
       flutterLocalNotificationsPlugin.show(
-          notification.hashCode,
-          notification.title,
-          notification.body,
-          const NotificationDetails(
-            android: AndroidNotificationDetails(
-              'default_channel',
-              'General',
-              importance: Importance.max,
-              priority: Priority.high,
-            ),
+        notification.hashCode,
+        notification.title,
+        notification.body,
+        const NotificationDetails(
+          android: AndroidNotificationDetails(
+            'default_channel',
+            'General',
+            importance: Importance.max,
+            priority: Priority.high,
           ),
-          payload: NotificationController.controller.isNotificationState == false? NotificationScreen.name: HomeScreen.name,
-
+        ),
+        payload: NotificationController.controller.isNotificationState == false
+            ? NotificationScreen.name
+            : HomeScreen.name,
       );
     }
 
@@ -103,20 +119,3 @@ Future<void> handelBackgroundNotification(RemoteMessage message) async {
   Navigator.pushNamed(navigatorKey.currentContext!, HomeScreen.name);
   NotificationController.controller.updateNotificationList(message);
 }
-
-// will use when needed the route automation
-
-// routeHandler(String? name){
-//   if(name != null && name == 'result'){
-//     return ResultScreen.name;
-//   }else if(name != null && name == 'upcoming-exam'){
-//     return UpcomingExamScreen.name;
-//   }else if(name != null && name == 'attendance'){
-//     return AttendanceScreen.name;
-//   }else if(name != null && name == 'exams'){
-//     return ExamListScreen.name;
-//   }else{
-//     return NotificationScreen.name;
-//   }
-//
-// }
