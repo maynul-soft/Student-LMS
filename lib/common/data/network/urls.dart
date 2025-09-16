@@ -4,8 +4,6 @@ class Urls {
   static const String upcomingExamUrl = '$_baseUrl/upcoming-exam';
   static const String examListUrl = '$_baseUrl/exam';
   static const String resultUrl = '$_baseUrl/result';
-
-
   static String loginUrl({required String id, required String password}) {
     return '$_baseUrl/$id/$password';
   }

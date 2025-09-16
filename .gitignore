@@ -44,6 +44,6 @@ app.*.map.json
 
 # FVM Version Cache
 .fvm/
-key.properties
+android/key.properties
 my-release-key.jks
 lib/firebase_options.dart
