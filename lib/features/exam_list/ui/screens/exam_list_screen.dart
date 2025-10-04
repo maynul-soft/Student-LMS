@@ -25,17 +25,11 @@ class _ExamListScreenState extends State<ExamListScreen> {
     fetchExamListData();
   }
 
-  bool isLoading = false;
-
   Future<void> fetchExamListData() async {
-    isLoading = true;
-    setState(() {});
     await examController.getExamListData();
-    isLoading = false;
-    setState(() {});
   }
 
-  subText(String text){
+  subText(String text) {
     return text.replaceAll(RegExp(r'<[^>]*>'), '').trim();
   }
 
@@ -51,19 +45,16 @@ class _ExamListScreenState extends State<ExamListScreen> {
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
           child: Column(
-
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               buildSearchSecion(width),
-
               const SizedBox(
                 height: 20,
               ),
-
-              const Text('Exam List',
-              style: TextStyle(fontSize: 25),
+              const Text(
+                'Exam List',
+                style: TextStyle(fontSize: 25),
               ),
-
               const SizedBox(
                 height: 20,
               ),
@@ -77,53 +68,51 @@ class _ExamListScreenState extends State<ExamListScreen> {
 
   SizedBox buildSearchSecion(double width) {
     return SizedBox(
-              // color: Colors.green.shade50,
-              width: width,
-              height: 50,
-              child: Row(
-                children: [
-                  SizedBox(
-                      width: width - 80,
-                      child: Form(
-                        key: _formKey,
-                        child: TextFormField(
-                          controller: searchBoxTEController,
-                          onChanged: (value) {
-                            examController.onChange(value);
-                          },
-                          decoration: const InputDecoration(
-                              disabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide.none),
-                              errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide.none),
-                              hintText: 'Search by exam name'),
-                        ),
-                      )),
-                  Container(
-                      // padding:  const EdgeInsets.symmetric(vertical:  18, ),
-                      margin: const EdgeInsets.only(left: 5),
-                      width: width - (width - 70),
-                      decoration: BoxDecoration(
-                          color: Colors.black,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: IconButton(
-                          onPressed: () {
-                            examController
-                                .filterData(searchBoxTEController.text);
-                          },
-                          icon: const Icon(
-                            Icons.search,
-                            color: Colors.white,
-                          ))),
-                ],
-              ),
-            );
+      // color: Colors.green.shade50,
+      width: width,
+      height: 50,
+      child: Row(
+        children: [
+          SizedBox(
+              width: width - 80,
+              child: Form(
+                key: _formKey,
+                child: TextFormField(
+                  controller: searchBoxTEController,
+                  onChanged: (value) {
+                    examController.onChange(value);
+                  },
+                  decoration: const InputDecoration(
+                      disabledBorder:
+                          OutlineInputBorder(borderSide: BorderSide.none),
+                      errorBorder:
+                          OutlineInputBorder(borderSide: BorderSide.none),
+                      hintText: 'Search by exam name'),
+                ),
+              )),
+          Container(
+              // padding:  const EdgeInsets.symmetric(vertical:  18, ),
+              margin: const EdgeInsets.only(left: 5),
+              width: width - (width - 70),
+              decoration: BoxDecoration(
+                  color: Colors.black, borderRadius: BorderRadius.circular(10)),
+              child: IconButton(
+                  onPressed: () {
+                    examController.filterData(searchBoxTEController.text);
+                  },
+                  icon: const Icon(
+                    Icons.search,
+                    color: Colors.white,
+                  ))),
+        ],
+      ),
+    );
   }
 
   Widget buildTableSection() {
     return GetBuilder<ExamController>(builder: (context) {
       return Visibility(
-        visible: isLoading == false,
+        visible: examController.isLoading == false,
         replacement: const Padding(
           padding: EdgeInsets.only(top: 250),
           child: Center(child: CircularProgressIndicator()),
@@ -201,10 +190,10 @@ class _ExamListScreenState extends State<ExamListScreen> {
                     Padding(
                       padding: const EdgeInsets.all(10),
                       child: Text(value.status),
-                    ),Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Text(subText(value.syllabus))
                     ),
+                    Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Text(subText(value.syllabus))),
                     // Padding(
                     //   padding: EdgeInsets.all(10),
                     //   child: Text('Date'),
@@ -217,7 +206,5 @@ class _ExamListScreenState extends State<ExamListScreen> {
         ),
       );
     });
-    
-    
   }
 }

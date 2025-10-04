@@ -6,14 +6,15 @@ import 'package:lms/features/upcoming_exam/ui/contrller/upcoming_exam_controller
 
 import '../common/controller/auth_controller.dart';
 import '../features/attendance/controller/attendance_controller.dart';
+
 class ControllerBinder extends Bindings {
   @override
   void dependencies() {
-   Get.put(AuthController());
-   Get.put(AttendanceController());
-   Get.put(UpcomingExamController());
-   Get.put(ExamController());
-   Get.put(ResultController());
-   Get.put(NotificationController());
+    Get.put(AuthController());
+    Get.put(AttendanceController());
+    Get.put(UpcomingExamController());
+    Get.put(ExamController());
+    Get.put(ResultController());
+    Get.put(NotificationController());
   }
 }

@@ -3,13 +3,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:lms/app/firebase_messaging/fcm.dart';
 import 'app/app.dart';
 import 'firebase_options.dart';
 
-
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-FlutterLocalNotificationsPlugin();
+    FlutterLocalNotificationsPlugin();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -28,17 +29,16 @@ void main() async {
   await Fcm().getNotification();
 
   await flutterLocalNotificationsPlugin.initialize(
-    const InitializationSettings(
-      android: AndroidInitializationSettings('@mipmap/launcher_icon'),
-      iOS: DarwinInitializationSettings(),
-    ),
-    onDidReceiveNotificationResponse: (NotificationResponse response){
-      if(response.payload != null){
-        navigatorKey.currentState?.pushNamed(response.payload!);
-      }
+      const InitializationSettings(
+        android: AndroidInitializationSettings('@mipmap/launcher_icon'),
+        iOS: DarwinInitializationSettings(),
+      ), onDidReceiveNotificationResponse: (NotificationResponse response) {
+    if (response.payload != null) {
+      navigatorKey.currentState?.pushNamed(response.payload!);
     }
-  );
+  });
+
+  await Hive.initFlutter();
+
   runApp(const MyApp());
 }
-
-

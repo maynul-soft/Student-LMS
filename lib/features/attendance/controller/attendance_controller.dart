@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lms/app/app.dart';
 import 'package:logger/logger.dart';
-
 import '../../../common/controller/auth_controller.dart';
 import '../../../common/data/network/network_client.dart';
 import '../../../common/data/network/urls.dart';
